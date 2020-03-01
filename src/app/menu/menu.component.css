@@ -1,0 +1,21 @@
+.btn_main_menu_header {
+    outline: none;
+}
+
+.mat_icon_header_menu {
+    color: white;
+    margin-bottom: 9px;
+    outline: none;
+}
+
+.menu_item {
+    outline: none;
+    font-family: 'IranSans';
+    font-size: 15px;
+    text-align: right;
+    padding-right: 0px;
+}
+
+.mat_icon_menu_item {
+    padding-left: 10px;
+}

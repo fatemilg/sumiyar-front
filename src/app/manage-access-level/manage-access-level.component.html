@@ -1,0 +1,30 @@
+<mat-progress-bar mode="indeterminate" color="accent" class="progress_bar" *ngIf="visible_progress"></mat-progress-bar>
+
+<mat-toolbar>
+    <span> تعریف سطح دسترسی</span>
+</mat-toolbar>
+<mat-card>
+    <mat-card-content>
+        <form class="container" #access_level_form="ngForm">
+            <div class="row">
+                <mat-form-field class="col-xs-12">
+                    <mat-label>پرسنل</mat-label>
+                    <mat-select name="IDPersonel">
+                        <mat-option (click)=hide_Page_list()>---</mat-option>
+                        <mat-option *ngFor="let item of res_personels" [value]="item.IDPersonel">
+                            <span (click)=add_all_pages_for_personel(item.IDPersonel)>{{item.FName+' '+item.LName}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div *ngIf="show_menu_lists">
+                    <div *ngFor="let item of res_access_level">
+                        <mat-checkbox [(checked)]="item.Access" name="Access" color="primary" (click)=update_access(item.IDAccessLevel,item.Access)>{{item.Title}}</mat-checkbox>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

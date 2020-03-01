@@ -1,0 +1,14 @@
+.header_title {
+    font-family: 'IranSans';
+    font-size: 15px;
+}
+
+.header-remaining-space {
+    flex: 1 1 auto;
+}
+
+.header {
+    position: fixed;
+    z-index: 1000 !important;
+    top: 0 !important;
+}

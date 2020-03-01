@@ -1,0 +1,45 @@
+.mat-toolbar {
+    text-align: right;
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.mat-select {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+.mat-option {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+::ng-deep .mat-option-text {
+    padding-right: 20px;
+    ;
+}
+
+.row-buttons {
+    padding-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.mat-raised-button {
+    font-family: 'IranSans';
+    margin-right: 5px;
+}
+
+.mat-checkbox {
+    font-family: 'IranSans';
+}
