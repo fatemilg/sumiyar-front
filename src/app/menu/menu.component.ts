@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ng2-cookies';
 import { Router } from '@angular/router';
 import { LogUserService } from '../services/log_user.service';
 
@@ -11,16 +10,15 @@ import { LogUserService } from '../services/log_user.service';
 export class MenuComponent implements OnInit {
 
   constructor(
-    private log_user_service :LogUserService,
-    private cookie: CookieService,
-    private router: Router
+    private log_user: LogUserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
   }
-  log_out() {
-    this.cookie.delete('Token', '/path');
-    this.router.navigateByUrl('/login')
 
+  log_out() {
+    this.log_user.remove_token();
+    this.router.navigate(["login"]);
   }
 }

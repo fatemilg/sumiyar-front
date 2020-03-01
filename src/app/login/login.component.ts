@@ -3,7 +3,7 @@ import { PersonelService } from '../services/personel.service'
 import { Personel } from '../models/Personel';
 import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
-import { CookieService } from 'ng2-cookies';
+import { LogUserService } from '../services/log_user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,20 +15,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private personel_service: PersonelService,
     private general_func: GeneralFunc,
-    private cookie: CookieService,
-    private router:Router) { }
+    private log_user: LogUserService,
+    private router: Router
+  ) { }
 
   model_login = new Personel()
-  ngOnInit() {
-  }
 
-  get_personel_login(item) {
+  check_personel_log_in(item) {
     return this.personel_service
       .check_personel_log_in(item)
       .subscribe((data: XResult) => {
         if (data.IsOK) {
-          this.cookie.set('Token', data.Value.Token,1,'/path');
-          this.router.navigateByUrl('/dashboard');
+          this.log_user.set_token(data.Value.Token);
+          this.router.navigate(["dashboard"]);
         }
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -36,6 +35,9 @@ export class LoginComponent implements OnInit {
         }
 
       });
+  }
+
+  ngOnInit() {
   }
 
 

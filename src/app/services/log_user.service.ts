@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Personel } from '../models/Personel'
-import { EnvironmentUrlService } from './shared/environment-url.service';
-import { Observable } from 'rxjs';
-import { XResult } from '../models/Xresult';
-import { LogUser } from '../models/Loguser';
+import { CookieService } from 'ng2-cookies';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +7,21 @@ import { LogUser } from '../models/Loguser';
 
 export class LogUserService {
 
-  constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
+  constructor( private cookie: CookieService,) { }
 
-  readonly base_url = this.envUrl.urlAddress + '/api/LogUser/';
+  set_token(token: string) {
+    this.cookie.set('Token', token, 1, '/');
+    var a = this.cookie.get('Token');
+  }
+  get_token() {
+    return this.cookie.get('Token');
+  }
+  is_log_in() {
+    return this.get_token() !== '';
+  }
+  remove_token() {
+    this.cookie.delete('Token', '/');
+  }
 
 
 }

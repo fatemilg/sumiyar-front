@@ -20,6 +20,8 @@ import { NumberDirective } from './directives/numbers-only.directive';
 import { MatSortModule } from '@angular/material';
 import { CookieService } from 'ng2-cookies';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LogUserService } from './services/log_user.service';
+import { AuthGuard } from './auth/auth.guard';
 
 
 @NgModule({
@@ -46,7 +48,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     MatSortModule
   ],
-  providers: [EnvironmentUrlService,CookieService],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

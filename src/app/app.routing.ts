@@ -5,19 +5,20 @@ import { ManageAccessLevelComponent } from './manage-access-level/manage-access-
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 
 
 const routes: Routes = [
 
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'manage-personel', component: ManagePersonelComponent },
-  { path: 'manage-access-level', component: ManageAccessLevelComponent },
-  { path: 'manage-tasks', component: ManageTasksComponent },
+  { path: 'manage-personel', component: ManagePersonelComponent, canActivate: [AuthGuard] },
+  { path: 'manage-access-level', component: ManageAccessLevelComponent, canActivate: [AuthGuard] },
+  { path: 'manage-tasks', component: ManageTasksComponent, canActivate: [AuthGuard] },
   { path: '404', component : NotFoundComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: '**', component : NotFoundComponent}
 ];
 

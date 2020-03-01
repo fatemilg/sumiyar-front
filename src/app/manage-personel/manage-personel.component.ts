@@ -21,7 +21,6 @@ export class ManagePersonelComponent implements OnInit {
     private role_service: RoleService,
     private general_func: GeneralFunc
   ) { 
-
   }
 
 
@@ -128,7 +127,6 @@ export class ManagePersonelComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
 
 
   ngOnInit() {
