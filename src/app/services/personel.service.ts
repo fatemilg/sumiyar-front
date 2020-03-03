@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Personel } from '../models/Personel'
 import { EnvironmentUrlService } from './shared/environment-url.service';
 import { Observable } from 'rxjs';
@@ -19,11 +19,6 @@ export class PersonelService {
   get_personel_all() {
     return this.http.get<XResult>(this.base_url + 'get_personel_all')
   }
-
-  check_personel_log_in(personel: Personel): Observable<XResult> {
-    return this.http.post<XResult>(this.base_url + 'check_personel_log_in', personel)
-  }
-
 
   edit_personel(Id: number) {
     return this.http.get<XResult>(this.base_url + 'edit_personel/' + Id)

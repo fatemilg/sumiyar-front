@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="header">
     <span class="header_title">نرم افزار سومیار</span>
     <span class="header-remaining-space"></span>
-    <app-menu></app-menu>
+    <app-menu *ngIf="check_is_login()"></app-menu>
 </mat-toolbar>

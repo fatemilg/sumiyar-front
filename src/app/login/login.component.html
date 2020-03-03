@@ -15,7 +15,7 @@
                     </mat-form-field>
                 </div>
                 <div class="row row-buttons">
-                    <button mat-raised-button color="primary" (click)=check_personel_log_in(model_login); [disabled]="!login_form.form.valid">ورود</button>
+                    <button mat-raised-button color="primary" (click)=generate_token(model_login); [disabled]="!login_form.form.valid">ورود</button>
                 </div>
             </form>
         </mat-card-content>

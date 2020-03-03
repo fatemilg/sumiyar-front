@@ -22,4 +22,4 @@ const routes: Routes = [
   { path: '**', component : NotFoundComponent}
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes); 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonelService } from '../services/personel.service'
 import { Personel } from '../models/Personel';
 import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
-import { LogUserService } from '../services/log_user.service';
+import { TokenService } from '../services/token.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,20 +12,20 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private personel_service: PersonelService,
+  constructor(
     private general_func: GeneralFunc,
-    private log_user: LogUserService,
+    private token_service: TokenService,
     private router: Router
   ) { }
 
   model_login = new Personel()
 
-  check_personel_log_in(item) {
-    return this.personel_service
-      .check_personel_log_in(item)
+  generate_token(item) {
+    return this.token_service
+      .generate_token(item)
       .subscribe((data: XResult) => {
         if (data.IsOK) {
-          this.log_user.set_token(data.Value.Token);
+          this.token_service.set_token(data.Value);
           this.router.navigate(["dashboard"]);
         }
         else {
