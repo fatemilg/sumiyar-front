@@ -21,7 +21,8 @@ export class TokenService {
     return   localStorage.getItem('Token');
   }
   is_authenticated() {
-    return this.get_token() !== null; 
+    if(this.get_token() == null || this.get_token() == 'null') return false;
+    else return true;
   }
   remove_token() {
     localStorage.removeItem('Token');

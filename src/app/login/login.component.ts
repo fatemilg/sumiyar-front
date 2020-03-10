@@ -18,7 +18,9 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  model_login = new Personel()
+  model_login = new Personel();
+
+  
 
   generate_token(item) {
     return this.token_service

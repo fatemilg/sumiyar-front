@@ -16,9 +16,10 @@ import { ManageAccessLevelComponent } from './manage-access-level/manage-access-
 import { routing } from './app.routing';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { NumberDirective } from './directives/numbers-only.directive';
-import { MatSortModule } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthInterceptor } from './scripts/auth_interceptor';
+import { ContractsComponent } from './contracts/contracts.component';
+import { DetailContractsComponent } from './detail-contracts/detail-contracts.component';
 
 
 // import { CookieService } from 'ng2-cookies';
@@ -36,7 +37,9 @@ import { AuthInterceptor } from './scripts/auth_interceptor';
     ManageAccessLevelComponent,
     ManageTasksComponent,
     NumberDirective,
-    DashboardComponent
+    DashboardComponent,
+    ContractsComponent,
+    DetailContractsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,9 +48,9 @@ import { AuthInterceptor } from './scripts/auth_interceptor';
     routing,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    ReactiveFormsModule,
-    MatSortModule
+    ReactiveFormsModule
   ],
+  entryComponents: [ContractsComponent, DetailContractsComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

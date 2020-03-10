@@ -32,8 +32,8 @@ export class ManagePersonelComponent implements OnInit {
 
 
   //table-config
-  displayedColumns: string[] = ['Actions','FullName', 'UserName', 'Active'];
-  dataSource: MatTableDataSource<Personel>;
+  displayed_columns: string[] = ['Actions','FullName', 'UserName', 'Active'];
+  data_source: MatTableDataSource<Personel>;
 
 
 
@@ -59,7 +59,7 @@ export class ManagePersonelComponent implements OnInit {
       .get_personel_all()
       .subscribe((data: XResult) => {
         if (data.IsOK) {
-          this.dataSource = new MatTableDataSource(data.Value);
+          this.data_source = new MatTableDataSource(data.Value);
         }
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -122,10 +122,10 @@ export class ManagePersonelComponent implements OnInit {
       });
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  apply_filter(filter_value: string) {
+    filter_value = filter_value.trim(); // Remove whitespace
+    filter_value = filter_value.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.data_source.filter = filter_value;
   }
 
 

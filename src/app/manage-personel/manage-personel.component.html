@@ -49,12 +49,12 @@
 
             <div class="col-xs-12 filter">
                 <mat-form-field>
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="جست و جو">
+                    <input matInput (keyup)="apply_filter($event.target.value)" placeholder="جست و جو">
                 </mat-form-field>
             </div>
 
             <div class="table-container mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" class="pesonel-table" dir="rtl">
+                <table mat-table [dataSource]="data_source" class="personel-table" dir="rtl">
                     <ng-container matColumnDef="Actions">
                         <th mat-header-cell *matHeaderCellDef> عملیات </th>
                         <td mat-cell *matCellDef="let element">
@@ -65,7 +65,7 @@
                     </ng-container>
                     <ng-container matColumnDef="FullName">
                         <th mat-header-cell *matHeaderCellDef> نام </th>
-                        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.FullName}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="UserName">
@@ -80,8 +80,8 @@
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayed_columns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
                 </table>
 
             </div>

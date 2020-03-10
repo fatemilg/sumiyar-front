@@ -31,8 +31,8 @@ export class ManageTasksComponent implements OnInit {
   industry_selected: boolean = false;
 
   //table-config
-  displayedColumns: string[] = ['Actions', 'CreateDate', 'IndustryTitle', 'TaskTitle', 'EstimateTime', 'EstimateWage',];
-  dataSource: MatTableDataSource<TaskHistory>;
+  displayed_columns: string[] = ['Actions', 'CreateDate', 'IndustryTitle', 'TaskTitle', 'EstimateTime', 'EstimateWage',];
+  data_source: MatTableDataSource<TaskHistory>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -87,9 +87,9 @@ export class ManageTasksComponent implements OnInit {
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
-            this.dataSource  = new MatTableDataSource(data.Value);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
+            this.data_source  = new MatTableDataSource(data.Value);
+            this.data_source.paginator = this.paginator;
+            this.data_source.sort = this.sort;
           }
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -120,10 +120,10 @@ export class ManageTasksComponent implements OnInit {
     this.industry_selected = false;
   }
   
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  apply_filter(filter_value: string) {
+    filter_value = filter_value.trim(); // Remove whitespace
+    filter_value = filter_value.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.data_source.filter = filter_value;
   }
 
   ngOnInit() {
