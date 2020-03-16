@@ -23,8 +23,10 @@ export class ContractsComponent implements OnInit {
   data_source: MatTableDataSource<Contract>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+  visible_progress: boolean;
 
   get_contract_all() {
+    this.visible_progress = true;
     return this.contract_service
       .get_contract_all()
       .subscribe(
@@ -37,6 +39,7 @@ export class ContractsComponent implements OnInit {
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
           }
+          this.visible_progress = false;
 
         })
   }

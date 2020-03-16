@@ -66,9 +66,11 @@ export class ManagePersonelComponent implements OnInit {
         }
         this.visible_progress = false;
       })
+
   }
 
   add_update_personel(item) {
+    this.visible_progress = true;
     return this.personel_service
       .add_update_personel(item)
       .subscribe((data: XResult) => {
@@ -77,7 +79,7 @@ export class ManagePersonelComponent implements OnInit {
           this.get_personel_all();
         }
         this.general_func.ShowMessage(data.Message, data.IsOK);
-
+        this.visible_progress = false;
       });
   }
 
@@ -89,6 +91,7 @@ export class ManagePersonelComponent implements OnInit {
   }
 
   update_active_status(id_personel, active_status) {
+    this.visible_progress = true;
     let item = new Personel()
     item.IDPersonel = id_personel;
     item.Active = !active_status;
@@ -103,10 +106,13 @@ export class ManagePersonelComponent implements OnInit {
         {
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
+        this.visible_progress = false;
       });
   }
 
   edit_personel(id_personel) {
+    this.visible_progress = true;
+
     document.getElementById("personel_container").scrollIntoView({ behavior: 'smooth' });
     document.getElementById("btn_add_update_personel").innerHTML=   "ویرایش";
 
@@ -119,6 +125,8 @@ export class ManagePersonelComponent implements OnInit {
         else{
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
+        this.visible_progress = false;
+
       });
   }
 

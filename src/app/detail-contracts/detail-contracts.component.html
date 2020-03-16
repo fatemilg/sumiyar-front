@@ -1,16 +1,36 @@
+<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress"></mat-spinner>
+
 <mat-nav-list>
-    <a mat-list-item>
+    <div class="list-item">
+        <span mat-line>Contract: </span>
+        <span mat-line>{{model_detail_contract.ContarctNumber}}</span>
+    </div>
+    <div class="list-item">
+        <span mat-line>Order: </span>
+        <span mat-line>{{model_detail_contract.OrderNumber}}</span>
+    </div>
+    <div class="list-item">
+        <span mat-line>Issuance Date: </span>
+        <span mat-line>{{model_detail_contract.OrderCompleteDate}}</span>
+    </div>
+    <div class="list-item">
         <span mat-line>Product: </span>
         <span mat-line>{{model_detail_contract.ProductName}}</span>
-    </a>
+    </div>
 
-    <a mat-list-item>
-        <span mat-line>PartNumber: </span>
-        <span mat-line>{{model_detail_contract.PartNumber}}</span>
-    </a>
+    <div class="list-item description-product">
+        <span mat-line>Description: </span>
+        <span mat-line>{{model_detail_contract.Description}}</span>
+    </div>
 
-    <a mat-list-item>
-        <span mat-line>Description:</span>
-        <span mat-line>{{model_detail_contract.PartNumber}}</span>
-    </a>
+    <div *ngFor="let item of res_define_tasks" class="col-xs-6" style="display:inline-block">
+        <mat-checkbox [(checked)]="item.Selected" name="Selected" color="primary" (click)=update_selected(item.IDDefineTask,item.Selected)>{{item.Title}}</mat-checkbox>
+    </div>
+
+    <span>
+      <button mat-raised-button id="btn_update_start_status"  (click)=btn_update_start_status() [ngClass]="{'start-btn': model_detail_contract.StartStatus === true,'stop-btn': model_detail_contract.StartStatus === false}" >
+        {{model_detail_contract.StartStatus==true ? 'Start' : 'Stop'}}</button>
+    </span>
+
+
 </mat-nav-list>

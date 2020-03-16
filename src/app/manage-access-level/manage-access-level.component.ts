@@ -28,7 +28,6 @@ export class ManageAccessLevelComponent implements OnInit {
 
   get_personel_all() {
     this.visible_progress = true;
-
     return this.personel_service
       .get_personel_all()
       .subscribe((data: XResult) => {
@@ -56,7 +55,7 @@ export class ManageAccessLevelComponent implements OnInit {
       });
   }
   add_all_pages_for_personel(id_personel) {
-
+    this.visible_progress = true;
     this.model_access_level.IDPersonel = id_personel
     return this.access_level_service
       .add_all_pages_for_personel(this.model_access_level)
@@ -67,7 +66,7 @@ export class ManageAccessLevelComponent implements OnInit {
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
-
+        this.visible_progress = false;
       });
   }
   get_access_level_by_personel(id_personel) {

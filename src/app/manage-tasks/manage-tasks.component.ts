@@ -55,6 +55,7 @@ export class ManageTasksComponent implements OnInit {
   }
 
   load_tasks_by_industry(id_industry) {
+    this.visible_progress = true;
     this.industry_selected = true;
     return this.task_service
       .get_task_by_industry(id_industry)
@@ -66,10 +67,12 @@ export class ManageTasksComponent implements OnInit {
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
+        this.visible_progress = false;
       })
   }
 
   add_task_history(item) {
+    this.visible_progress = true;
     return this.task_history_service
       .add_task_history(item)
       .subscribe((data: XResult) => {
@@ -78,10 +81,11 @@ export class ManageTasksComponent implements OnInit {
           this.get_task_history_all();
         }
         this.general_func.ShowMessage(data.Message, data.IsOK);
-
+        this.visible_progress = false;
       });
   }
   get_task_history_all() {
+    this.visible_progress = true;
     return this.task_history_service
       .get_task_history_all()
       .subscribe(
@@ -94,11 +98,12 @@ export class ManageTasksComponent implements OnInit {
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
           }
-
+          this.visible_progress = false;
         })
   }
 
   delete_task_history_by_Id(item) {
+    this.visible_progress = true;
     let  c = confirm("آیا مطمئن هستید ?");  
     if(c)
     {
@@ -109,6 +114,7 @@ export class ManageTasksComponent implements OnInit {
           this.get_task_history_all();
         }
         this.general_func.ShowMessage(data.Message, data.IsOK);
+        this.visible_progress = false;
 
       });
     }
