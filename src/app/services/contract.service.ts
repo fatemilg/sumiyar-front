@@ -22,8 +22,8 @@ export class ContractService {
     return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + Id)
   }
 
-  update_start_status(contract: Contract): Observable<XResult> {
-    return this.http.post<XResult>(this.base_url + 'update_start_status', contract)
+  update_put_in_line(contract: Contract): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_put_in_line', contract)
   }
 
 }

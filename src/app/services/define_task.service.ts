@@ -20,8 +20,8 @@ export class DefineTaskService {
     }
 
 
-    update_selected(define_task: DefineTask): Observable<XResult> {
-        return this.http.post<XResult>(this.base_url + 'update_selected', define_task)
+    update_selected_define_task(define_task: DefineTask): Observable<XResult> {
+        return this.http.post<XResult>(this.base_url + 'update_selected_define_task', define_task)
     }
 }
 

@@ -8,8 +8,11 @@ export class Contract {
   ProductName: string;
   Count: number;
   Meter: number;
-  StartStatus:boolean;
-  StratDate:Date;
-  EndDate:Date
+  OrderCompleteDate: Date;
+  PutInLine:boolean;
+  PutInLineDate:Date;
+  EndDate:Date;
+
+  Description: string;
 
 }

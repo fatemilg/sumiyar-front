@@ -26,3 +26,13 @@
 .filter {
     direction: rtl;
 }
+
+.put_in_line {
+    color: green;
+    cursor: pointer;
+}
+
+.put_out_line {
+    color: red;
+    cursor: pointer;
+}

@@ -1,36 +1,46 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress"></mat-spinner>
+<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+</mat-spinner>
 
 <mat-nav-list>
-    <div class="list-item">
-        <span mat-line>Contract: </span>
+    <div class="list-item-fa">
+        <span mat-line>شماره قرارداد: </span>
         <span mat-line>{{model_detail_contract.ContarctNumber}}</span>
     </div>
-    <div class="list-item">
-        <span mat-line>Order: </span>
+    <div class="list-item-fa">
+        <span mat-line>شماره سفارش: </span>
         <span mat-line>{{model_detail_contract.OrderNumber}}</span>
     </div>
-    <div class="list-item">
-        <span mat-line>Issuance Date: </span>
+    <div class="list-item-fa">
+        <span mat-line>تاریخ صدور حواله برای این قرارداد: </span>
         <span mat-line>{{model_detail_contract.OrderCompleteDate}}</span>
     </div>
-    <div class="list-item">
+    <div class="list-item-en">
         <span mat-line>Product: </span>
         <span mat-line>{{model_detail_contract.ProductName}}</span>
     </div>
 
-    <div class="list-item description-product">
+    <div class="list-item-en description-product">
         <span mat-line>Description: </span>
         <span mat-line>{{model_detail_contract.Description}}</span>
     </div>
+    <div class="list-item-en ">
+        <span class="span-rtl">انتساب وظایف به این محصول: </span>
+        <div class="clearfix"></div>
+        <div *ngFor="let item of res_define_tasks" class="col-xs-6" style="display:inline-block">
+            <mat-checkbox [(checked)]="item.Selected" [(ngModel)]="item.Selected" color="warn" (click)=update_selected_define_task(item.IDDefineTask,item.Selected)>{{item.Title}}</mat-checkbox>
+        </div>
+        <button mat-raised-button id="btn_assign_contract_task" color="warn" (click)="assign_contract_task()">انتساب</button>
 
-    <div *ngFor="let item of res_define_tasks" class="col-xs-6" style="display:inline-block">
-        <mat-checkbox [(checked)]="item.Selected" name="Selected" color="primary" (click)=update_selected(item.IDDefineTask,item.Selected)>{{item.Title}}</mat-checkbox>
+    </div>
+    <div class="list-item-en ">
+        <span class="span-rtl">وظایف انتساب داده شده برای این قرارداد: </span>
+        <div class="clearfix"></div>
+        <div *ngFor="let item of res_contract_tasks" class="col-xs-6" style="display:inline-block">
+            <mat-checkbox [(checked)]="item.Selected" color="primary" disabled>{{item.Title}}</mat-checkbox>
+        </div>
+
     </div>
 
-    <span>
-      <button mat-raised-button id="btn_update_start_status"  (click)=btn_update_start_status() [ngClass]="{'start-btn': model_detail_contract.StartStatus === true,'stop-btn': model_detail_contract.StartStatus === false}" >
-        {{model_detail_contract.StartStatus==true ? 'Start' : 'Stop'}}</button>
-    </span>
 
 
 </mat-nav-list>
