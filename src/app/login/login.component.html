@@ -1,10 +1,10 @@
-<div>
-    <mat-toolbar>
-        <span> ورود به پنل</span>
-    </mat-toolbar>
+<div class="login-main">
     <mat-card>
+        <mat-card-title class="mat-card-title">
+            ورود به پنل سومیار
+        </mat-card-title>
         <mat-card-content>
-            <form class="container" #login_form="ngForm">
+            <form class="login-container" #login_form="ngForm">
                 <div class="row">
                     <mat-form-field class="col-xs-12">
                         <input matInput placeholder="نام کاربری" [(ngModel)]="model_login.UserName" name="UserName" required maxlength="50">

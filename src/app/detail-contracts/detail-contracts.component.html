@@ -14,6 +14,11 @@
         <span mat-line>تاریخ صدور حواله برای این قرارداد: </span>
         <span mat-line>{{model_detail_contract.OrderCompleteDate}}</span>
     </div>
+    <div class="list-item-fa" *ngIf="model_detail_contract.PutInLine">
+        <span mat-line>تاریخ قرار گرفتن این قرارداد در صف تولید: </span>
+        <span mat-line>{{model_detail_contract.PutInLineDate}}</span>
+    </div>
+
     <div class="list-item-en">
         <span mat-line>Product: </span>
         <span mat-line>{{model_detail_contract.ProductName}}</span>
