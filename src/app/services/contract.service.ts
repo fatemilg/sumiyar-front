@@ -18,6 +18,9 @@ export class ContractService {
   get_contract_all() {
     return this.http.get<XResult>(this.base_url + 'get_contract_all')
   }
+  get_contract_in_line() {
+    return this.http.get<XResult>(this.base_url + 'get_contract_in_line')
+  }
   get_detail_contract(Id: number) {
     return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + Id)
   }

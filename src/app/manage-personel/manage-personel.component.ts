@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PersonelService } from '../services/personel.service';
 import { Role } from '../models/Role';
 import { RoleService } from '../services/role.service';
@@ -38,6 +38,7 @@ export class ManagePersonelComponent implements OnInit {
 
 
   get_role_all() {
+    this.visible_progress = true;
     return this.role_service
       .get_role_all()
       .subscribe(
@@ -49,6 +50,7 @@ export class ManagePersonelComponent implements OnInit {
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
           }
+          this.visible_progress = false;
 
         })
   }

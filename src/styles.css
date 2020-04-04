@@ -1,6 +1,7 @@
 html,
 body {
     margin: 0;
+    overflow-x: hidden;
 }
 
 app-root:empty::after {
@@ -14,14 +15,28 @@ app-root:empty::after {
 }
 
 .alert-danger {
-    font-family: 'IranSans' !important;
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
 
-.alert-success {
+.mat-simple-snackbar {
+    justify-content: flex-end !important;
+}
+
+.mat-simple-snackbar>span {
     font-family: 'IranSans' !important;
+    float: right;
+    direction: rtl;
+    text-align: right;
+}
+
+
+/* .mat-simple-snackbar-action {
+    float: left;
+} */
+
+.alert-success {
     color: #155724;
     background-color: #d4edda;
     border-color: #c3e6cb;

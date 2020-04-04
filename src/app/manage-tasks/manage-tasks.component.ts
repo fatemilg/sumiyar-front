@@ -118,6 +118,10 @@ export class ManageTasksComponent implements OnInit {
 
       });
     }
+    else
+    {
+      this.visible_progress = false;
+    }
 
   }
   clear_form_task_history() {

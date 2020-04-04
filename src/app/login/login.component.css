@@ -1,8 +1,19 @@
-.login-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 450px
+@media only screen and (orientation: Portrait) {
+    .login-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 45%;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .login-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5%;
+    }
 }
 
 .login-container {

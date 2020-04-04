@@ -42,7 +42,6 @@ export class PageComponent implements OnInit {
 
   log_out() {
     this.token_service.remove_token();
-    this.router.navigate(["login"]);
   }
 
   ngOnInit() {

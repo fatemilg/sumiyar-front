@@ -5,6 +5,7 @@ import { EnvironmentUrlService } from './shared/environment-url.service';
 import { Observable } from 'rxjs';
 import { XResult } from '../models/Xresult';
 import { Claim } from '../models/Claim';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ import { Claim } from '../models/Claim';
 
 export class TokenService {
 
-  constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
+  constructor(private http: HttpClient,
+    private envUrl: EnvironmentUrlService,
+    private router: Router, ) { }
   readonly base_url = this.envUrl.urlAddress + '/api/Token/';
 
   set_token(token: string) {
@@ -27,6 +30,7 @@ export class TokenService {
   }
   remove_token() {
     localStorage.removeItem('Token');
+    this.router.navigate(["login"]);
   }
 
   generate_token(personel: Personel): Observable<XResult> {

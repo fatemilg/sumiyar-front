@@ -16,10 +16,10 @@ import { ManageAccessLevelComponent } from './manage-access-level/manage-access-
 import { routing } from './app.routing';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { NumberDirective } from './directives/numbers-only.directive';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthInterceptor } from './scripts/auth_interceptor';
 import { ContractsComponent } from './contracts/contracts.component';
 import { DetailContractsComponent } from './detail-contracts/detail-contracts.component';
+import { ActionComponent } from './action/action.component';
 
 
 // import { CookieService } from 'ng2-cookies';
@@ -37,7 +37,7 @@ import { DetailContractsComponent } from './detail-contracts/detail-contracts.co
     ManageAccessLevelComponent,
     ManageTasksComponent,
     NumberDirective,
-    DashboardComponent,
+    ActionComponent,
     ContractsComponent,
     DetailContractsComponent
   ],

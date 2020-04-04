@@ -4,16 +4,16 @@ import { ManagePersonelComponent } from './manage-personel/manage-personel.compo
 import { ManageAccessLevelComponent } from './manage-access-level/manage-access-level.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ContractsComponent } from './contracts/contracts.component';
+import { ActionComponent } from './action/action.component';
 
 
 
 
 const routes: Routes = [
 
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'action', component: ActionComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'manage-personel', component: ManagePersonelComponent, canActivate: [AuthGuard] },
   { path: 'manage-access-level', component: ManageAccessLevelComponent, canActivate: [AuthGuard] },

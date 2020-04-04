@@ -5,10 +5,12 @@
   <mat-icon class="mat_icon_header_menu">menu</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-    <!-- <button mat-menu-item class="menu_item" routerLink="login">
-    <span>پروفایل من</span>
-    <mat-icon class="mat_icon_menu_item">person</mat-icon>
-  </button> -->
+
+
+    <button mat-menu-item class="menu_item" routerLink="action">
+    <span>ثبت فعالیت</span>
+    <mat-icon class="mat_icon_menu_item">group_work</mat-icon>
+  </button>
 
 
     <button *ngFor="let item of res_access_pages" mat-menu-item class="menu_item" routerLink={{item.Route}}>
@@ -16,19 +18,6 @@
     <mat-icon class="mat_icon_menu_item">{{item.Icon}}</mat-icon>
   </button>
 
-
-    <!-- <button mat-menu-item class="menu_item" routerLink="manage-access-level">
-    <span>مدیریت سطح دسترسی</span>
-    <mat-icon class="mat_icon_menu_item">verified_user</mat-icon>
-  </button>
-    <button mat-menu-item class="menu_item" routerLink="manage-tasks">
-    <span>مدیریت وظایف</span>
-    <mat-icon class="mat_icon_menu_item">assignment</mat-icon>
-  </button>
-    <button mat-menu-item class="menu_item" routerLink="contracts">
-    <span>مدیریت قرارداد ها</span>
-    <mat-icon class="mat_icon_menu_item">format_list_bulleted</mat-icon>
-  </button> -->
 
     <button mat-menu-item class="menu_item" (click)="log_out()">
     <span>خروج</span>
