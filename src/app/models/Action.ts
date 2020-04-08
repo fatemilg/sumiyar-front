@@ -7,4 +7,5 @@ export class Action {
     StartDate:Date;
     EndDate:Date;
     Description:string;
+    PassedTime: string;
   }

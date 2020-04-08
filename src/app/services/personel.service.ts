@@ -19,7 +19,9 @@ export class PersonelService {
   get_personel_all() {
     return this.http.get<XResult>(this.base_url + 'get_personel_all')
   }
-
+  get_personel_supervisor() {
+    return this.http.get<XResult>(this.base_url + 'get_personel_supervisor')
+  }
   edit_personel(Id: number) {
     return this.http.get<XResult>(this.base_url + 'edit_personel/' + Id)
   }

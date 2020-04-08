@@ -9,9 +9,11 @@ export class Contract {
   Count: number;
   Meter: number;
   OrderCompleteDate: Date;
-  PutInLine: boolean;
-  PutInLineDate: Date;
+  StartDate: Date;
   EndDate: Date;
+  AssignSupervisorDate: Date;
+  IDSupervisor:number;
+  SupervisorFullName:string;
   Description: string;
   GenerateContarctNumber: string
 

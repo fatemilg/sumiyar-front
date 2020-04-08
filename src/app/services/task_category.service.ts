@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Task } from '../models/Task'
+import { TaskCategory } from '../models/TaskCategory'
 import { EnvironmentUrlService } from './shared/environment-url.service';
 import { Observable } from 'rxjs';
 import { XResult } from '../models/Xresult';
@@ -9,14 +9,17 @@ import { XResult } from '../models/Xresult';
     providedIn: 'root'
 })
 
-export class TaskService {
+export class TaskCategoryService {
 
     constructor(private http: HttpClient, private envUrl: EnvironmentUrlService) { }
 
-    readonly base_url = this.envUrl.urlAddress + '/api/Task/';
+    readonly base_url = this.envUrl.urlAddress + '/api/TaskCategory/';
 
-    get_task_by_task_category(id_task_category:number) {
-        return this.http.get<XResult>(this.base_url + 'get_task_by_task_category/' + id_task_category)
+
+    get_task_category_by_industry(id_industry:number) {
+        return this.http.get<XResult>(this.base_url + 'get_task_category_by_industry/' + id_industry)
     }
+   
+
 }
 

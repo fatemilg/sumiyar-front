@@ -11,15 +11,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { PageComponent } from './page/page.component';
-import { ManagePersonelComponent } from './manage-personel/manage-personel.component';
-import { ManageAccessLevelComponent } from './manage-access-level/manage-access-level.component';
+import { PersonelComponent } from './personel/personel.component';
+import { AccessLevelComponent } from './access-level/access-level.component';
 import { routing } from './app.routing';
-import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
+import { TasksComponent } from './tasks/tasks.component';
 import { NumberDirective } from './directives/numbers-only.directive';
 import { AuthInterceptor } from './scripts/auth_interceptor';
 import { ContractsComponent } from './contracts/contracts.component';
 import { DetailContractsComponent } from './detail-contracts/detail-contracts.component';
 import { ActionComponent } from './action/action.component';
+import { TaskHistoryComponent } from './task-history/task-history.component';
 
 
 // import { CookieService } from 'ng2-cookies';
@@ -33,13 +34,14 @@ import { ActionComponent } from './action/action.component';
     HeaderComponent,
     ContentComponent,
     PageComponent,
-    ManagePersonelComponent,
-    ManageAccessLevelComponent,
-    ManageTasksComponent,
+    PersonelComponent,
+    AccessLevelComponent,
+    TasksComponent,
     NumberDirective,
     ActionComponent,
     ContractsComponent,
-    DetailContractsComponent
+    DetailContractsComponent,
+    TaskHistoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -50,7 +52,7 @@ import { ActionComponent } from './action/action.component';
     AngularMaterialModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ContractsComponent, DetailContractsComponent],
+  entryComponents: [ DetailContractsComponent,TaskHistoryComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

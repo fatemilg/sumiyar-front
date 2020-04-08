@@ -15,18 +15,21 @@ export class ContractService {
 
   readonly base_url = this.envUrl.urlAddress + '/api/Contract/';
 
-  get_contract_all() {
-    return this.http.get<XResult>(this.base_url + 'get_contract_all')
+  get_contracts_all() {
+    return this.http.get<XResult>(this.base_url + 'get_contracts_all')
   }
-  get_contract_in_line() {
-    return this.http.get<XResult>(this.base_url + 'get_contract_in_line')
+  get_contracts_in_line() {
+    return this.http.get<XResult>(this.base_url + 'get_contracts_in_line')
   }
   get_detail_contract(Id: number) {
     return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + Id)
   }
 
-  update_put_in_line(contract: Contract): Observable<XResult> {
-    return this.http.post<XResult>(this.base_url + 'update_put_in_line', contract)
+  update_start_date(contract: Contract): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_start_date', contract)
+  }
+  update_supervisor(contract: Contract): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_supervisor', contract)
   }
 
 }

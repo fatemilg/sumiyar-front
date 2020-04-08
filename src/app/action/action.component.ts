@@ -38,6 +38,7 @@ export class ActionComponent implements OnInit {
   id_last_action_by_personel: number;
   contract_control = new FormControl();
   filtered_contract: Observable<Contract[]>;
+  passed_time:string;
 
   get_last_action_by_personel(id_personel) {
     this.visible_progress = true;
@@ -51,6 +52,7 @@ export class ActionComponent implements OnInit {
             if (this.res_last_action_personel.EndDate == null) // iani akharin action hanooz baz hast va be payan nareside
             {
               this.is_finish_last_action = false;
+              this.passed_time = data.Value.PassedTime;
             }
             else {
               this.is_finish_last_action = true;
@@ -66,10 +68,10 @@ export class ActionComponent implements OnInit {
 
 
 
-  get_contract_in_line() {
+  get_contracts_in_line() {
     this.visible_progress = true;
     return this.contract_service
-      .get_contract_in_line()
+      .get_contracts_in_line()
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
@@ -145,9 +147,27 @@ export class ActionComponent implements OnInit {
     else
       this.visible_progress = false;
   }
-  end_action() {
 
+  end_action() {
+    let c = confirm("آیا مطمئن هستید ?");
+    if (c) {
+      this.visible_progress = true;
+      this.model_action.IDContract =this.contract_control.value.IDContract;
+      this.model_action.IDAction =this.id_last_action_by_personel;
+      return this.action_service
+        .end_action(this.model_action)
+        .subscribe((data: XResult) => {
+          if (data.IsOK) {
+            this.is_finish_last_action = true;
+          }
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+          this.visible_progress = false;
+        });
+    }
+    else
+      this.visible_progress = false;
   }
+  
   refuse_action() {
     let c = confirm("آیا مطمئن هستید ?");
     if (c) {
@@ -170,7 +190,7 @@ export class ActionComponent implements OnInit {
 
   ngOnInit() {
     this.get_last_action_by_personel(this.id_personel)
-    this.get_contract_in_line();
+    this.get_contracts_in_line();
   }
 
 }

@@ -11,11 +11,11 @@ import { MatTableDataSource } from '@angular/material';
  
 
 @Component({
-  selector: 'app-manage-personel',
-  templateUrl: './manage-personel.component.html',
-  styleUrls: ['./manage-personel.component.css']
+  selector: 'app-personel',
+  templateUrl: './personel.component.html',
+  styleUrls: ['./personel.component.css']
 })
-export class ManagePersonelComponent implements OnInit {
+export class PersonelComponent implements OnInit {
 
   constructor(private personel_service: PersonelService,
     private role_service: RoleService,

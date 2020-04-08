@@ -52,7 +52,35 @@
 ::-webkit-resizer {
     border-bottom: 2px solid gray;
     border-left: 2px solid gray;
-    /* background: red; */
-    /* box-shadow: 0 0 5px 5px blue;
-    outline: 2px solid yellow; */
+}
+
+.alert-duration {
+    font-family: 'IranSans';
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    flex-direction: row-reverse;
+    padding-right: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 4px 5px #f3f3f3;
+}
+
+.duration-title {
+    text-align: right;
+    direction: rtl;
+}
+
+.duration-time {
+    text-align: right;
+    direction: rtl;
+    padding-right: 10px;
+}
+
+.mat-autocomplete {
+    direction: ltr;
+}
+
+.contract-input {
+    text-align: left;
 }

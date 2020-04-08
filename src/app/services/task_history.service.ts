@@ -17,9 +17,10 @@ export class TaskHistoryService {
 
 
 
-    get_task_history_all() {
-        return this.http.get<XResult>(this.base_url + 'get_task_history_all')
+    get_task_history_by_id_task(id_task:number) {
+        return this.http.get<XResult>(this.base_url + 'get_task_history_by_id_task/' + id_task)
     }
+
     add_task_history(task_history: TaskHistory): Observable<XResult> {
 
         return this.http.post<XResult>(this.base_url + 'add_task_history', task_history)

@@ -19,16 +19,16 @@ export class ContractsComponent implements OnInit {
   ) { }
 
   //table-config
-  displayed_columns: string[] = ['Actions', 'ContarctNumber', 'OrderNumber', 'Count', 'Meter', 'PutInLine'];
+  displayed_columns: string[] = [ 'ContarctNumber', 'OrderNumber', 'Count', 'Meter','Details'];
   data_source: MatTableDataSource<Contract>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   visible_progress: boolean;
 
-  get_contract_all() {
+  get_contracts_all() {
     this.visible_progress = true;
     return this.contract_service
-      .get_contract_all()
+      .get_contracts_all()
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
@@ -57,25 +57,9 @@ export class ContractsComponent implements OnInit {
     });
   }
 
-  update_put_in_line(id_contract, put_in_line) {
-    let item = new Contract();
-    item.IDContract = id_contract;
-    item.PutInLine = put_in_line;
-    return this.contract_service
-      .update_put_in_line(item)
-      .subscribe(
-        (data: XResult) => {
-          if (data.IsOK) {
-            this.get_contract_all();
-          }
-          else {
-            this.general_func.ShowMessage(data.Message, data.IsOK);
-          }
 
-        })
-  }
   ngOnInit() {
-    this.get_contract_all();
+    this.get_contracts_all();
   }
 
 

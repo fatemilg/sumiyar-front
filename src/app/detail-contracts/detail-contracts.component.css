@@ -4,16 +4,21 @@
     width: 100%;
 }
 
+.row-buttons {
+    padding-bottom: 10px;
+    justify-content: flex-end;
+}
+
 .list-item-fa {
     font-family: 'IranSans';
     direction: rtl;
-    background-color: #f6f6f6;
+    background-color: #e6e5e5;
     margin-bottom: 5px;
     padding: 10px;
 }
 
 .list-item-en {
-    background-color: #f6f6f6;
+    background-color: #e6e5e5;
     margin-bottom: 5px;
     padding: 10px;
 }
@@ -35,4 +40,30 @@
 
 .mat-nav-list {
     color: black
+}
+
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.mat-select {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+.mat-option {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+::ng-deep .mat-option-text {
+    padding-right: 20px;
+}
+
+.mat-line {
+    padding-right: 10px;
 }

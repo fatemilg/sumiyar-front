@@ -7,11 +7,11 @@ import { AccessLevel } from '../models/AccessLevel';
 import { AccessLevelService } from '../services/access_level.service';
 
 @Component({
-  selector: 'app-manage-access-level',
-  templateUrl: './manage-access-level.component.html',
-  styleUrls: ['./manage-access-level.component.css']
+  selector: 'app-access-level',
+  templateUrl: './access-level.component.html',
+  styleUrls: ['./access-level.component.css']
 })
-export class ManageAccessLevelComponent implements OnInit {
+export class AccessLevelComponent implements OnInit {
 
   constructor(
     private personel_service: PersonelService,

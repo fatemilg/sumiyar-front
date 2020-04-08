@@ -1,0 +1,61 @@
+<mat-toolbar>
+    <span> {{task_title}}</span>
+</mat-toolbar>
+<mat-card>
+    <mat-card-content>
+        <form class="container" #task_history_form="ngForm">
+            <div class="row row-buttons">
+                <button mat-raised-button id="btn_add_update_personel" color="primary" (click)=add_task_history(model_task_history) [disabled]="!task_history_form.form.valid">ثبت</button>
+                <button mat-raised-button color="accent" (click)=clear_form_task_history();>جدید</button>
+            </div>
+            <div class="row">
+                <mat-form-field class="col-xs-6">
+                    <input matInput placeholder="زمان واحد کاری (ثانیه ) " [(ngModel)]="model_task_history.EstimateTime" name="EstimateTime" required maxlength="6" numbersOnly>
+                </mat-form-field>
+
+                <mat-form-field class="col-xs-6">
+                    <input matInput placeholder="قیمت واحد کاری (ریال) " [(ngModel)]="model_task_history.EstimateWage" name="EstimateWage " required maxlength="6" numbersOnly>
+                </mat-form-field>
+            </div>
+
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="data_source" class="task-history-table" dir="rtl" matSort>
+
+                    <ng-container matColumnDef="Actions">
+                        <th mat-header-cell *matHeaderCellDef> حذف </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span (click)="delete_task_history_by_Id(element)" class="delete-table">
+                                <mat-icon>remove_circle_outline</mat-icon>
+                            </span>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="CreateDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ </th>
+                        <td mat-cell *matCellDef="let element"> {{element.CreateDate}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EstimateWage">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> قیمت </th>
+                        <td mat-cell *matCellDef="let element"> {{element.EstimateWage}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EstimateTime">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> زمان </th>
+                        <td mat-cell *matCellDef="let element"> {{element.EstimateTime}} </td>
+                    </ng-container>
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayed_columns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5,10, 20]" showFirstLastButtons></mat-paginator>
+
+            </div>
+
+
+        </form>
+
+    </mat-card-content>
+</mat-card>

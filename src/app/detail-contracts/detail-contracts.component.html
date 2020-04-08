@@ -2,49 +2,58 @@
 </mat-spinner>
 
 <mat-nav-list>
-    <div class="list-item-fa">
+    <div class="row list-item-fa">
         <span mat-line>شماره قرارداد: </span>
         <span mat-line>{{model_detail_contract.ContarctNumber}}</span>
     </div>
-    <div class="list-item-fa">
+    <div class="row list-item-fa">
         <span mat-line>شماره سفارش: </span>
         <span mat-line>{{model_detail_contract.OrderNumber}}</span>
     </div>
-    <div class="list-item-fa">
-        <span mat-line>تاریخ صدور حواله برای این قرارداد: </span>
-        <span mat-line>{{model_detail_contract.OrderCompleteDate}}</span>
+    <div class="row list-item-fa">
+        <span mat-line>تاریخ صدور حواله: </span>
+        <span mat-line> {{model_detail_contract.OrderCompleteDate}}</span>
     </div>
-    <div class="list-item-fa" *ngIf="model_detail_contract.PutInLine">
-        <span mat-line>تاریخ قرار گرفتن این قرارداد در صف تولید: </span>
-        <span mat-line>{{model_detail_contract.PutInLineDate}}</span>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ انتساب به {{model_detail_contract.SupervisorFullName}}: </span>
+        <span mat-line>{{model_detail_contract.AssignSupervisorDate ? model_detail_contract.AssignSupervisorDate : '---'}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ شروع سفارش: </span>
+        <span mat-line>{{model_detail_contract.StartDate ? model_detail_contract.StartDate : '---'}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ پایان سفارش: </span>
+        <span mat-line>{{model_detail_contract.EndDate ? model_detail_contract.EndDate : '---'}}</span>
     </div>
 
-    <div class="list-item-en">
+    <div class=" row list-item-fa" *ngIf="model_detail_contract.EndDate==null">
+        <mat-form-field class="col-xs-9">
+            <mat-label>مسئول خط</mat-label>
+            <mat-select [(value)]="model_personel.IDPersonel" name="IDPersonel">
+                <mat-option *ngFor="let item of res_personel_supervisors" [value]="item.IDPersonel">
+                    <span (click)="btn_enable_assign_supervisor()">{{item.FullName}}</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-xs-3 row-buttons">
+            <button mat-raised-button color="warn" (click)=assign_supervisor_contract() [disabled]="is_disable_assign_supervisor"> انتساب</button>
+        </div>
+
+    </div>
+
+    <div class="row list-item-en">
         <span mat-line>Product: </span>
         <span mat-line>{{model_detail_contract.ProductName}}</span>
     </div>
 
-    <div class="list-item-en description-product">
+    <div class="row list-item-en description-product">
         <span mat-line>Description: </span>
         <span mat-line>{{model_detail_contract.Description}}</span>
     </div>
-    <div class="list-item-en ">
-        <span class="span-rtl">انتساب وظایف به این محصول: </span>
-        <div class="clearfix"></div>
-        <div *ngFor="let item of res_define_tasks" class="col-xs-6" style="display:inline-block">
-            <mat-checkbox [(checked)]="item.Selected" [(ngModel)]="item.Selected" color="warn" (click)=update_selected_define_task(item.IDDefineTask,item.Selected)>{{item.Title}}</mat-checkbox>
-        </div>
-        <button mat-raised-button id="btn_assign_contract_task" color="warn" (click)="assign_contract_task()">انتساب</button>
 
-    </div>
-    <div class="list-item-en ">
-        <span class="span-rtl">وظایف انتساب داده شده برای این قرارداد: </span>
-        <div class="clearfix"></div>
-        <div *ngFor="let item of res_contract_tasks" class="col-xs-6" style="display:inline-block">
-            <mat-checkbox [(checked)]="item.Selected" color="primary" disabled>{{item.Title}}</mat-checkbox>
-        </div>
 
-    </div>
+
 
 
 

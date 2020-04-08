@@ -15,14 +15,7 @@
 
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="data_source" class="contract-table" dir="rtl" matSort>
-                    <ng-container matColumnDef="Actions">
-                        <th mat-header-cell *matHeaderCellDef> جزئیات </th>
-                        <td mat-cell *matCellDef="let element">
-                            <span (click)="load_detail_contract(element.ID)" class="detail-table">
-                                <mat-icon>view_headline</mat-icon>
-                            </span>
-                        </td>
-                    </ng-container>
+
                     <ng-container matColumnDef="ContarctNumber">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> قرارداد </th>
                         <td mat-cell *matCellDef="let element"> {{element.ContarctNumber}} </td>
@@ -39,11 +32,12 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> متراژ </th>
                         <td mat-cell *matCellDef="let element"> {{element.Meter}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="PutInLine">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> در صف تولید </th>
+                    <ng-container matColumnDef="Details">
+                        <th mat-header-cell *matHeaderCellDef> جزئیات </th>
                         <td mat-cell *matCellDef="let element">
-                            <mat-icon (click)=update_put_in_line(element.IDContract,element.PutInLine) [ngClass]="{'put_in_line': element.PutInLine === true,'put_out_line': element.PutInLine === false}">
-                                {{element.PutInLine==true ? 'check' : 'close'}}</mat-icon>
+                            <span (click)="load_detail_contract(element.IDContract)" class="detail-table">
+                                <mat-icon>view_headline</mat-icon>
+                            </span>
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayed_columns; sticky: true"></tr>
