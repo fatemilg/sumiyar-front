@@ -12,27 +12,27 @@
     </div>
     <div class="row list-item-fa">
         <span mat-line>تاریخ صدور حواله: </span>
-        <span mat-line> {{model_detail_contract.OrderCompleteDate}}</span>
+        <span mat-line class="date-time"> {{model_detail_contract.OrderCompleteDate}}</span>
     </div>
     <div class="row list-item-fa">
-        <span mat-line> تاریخ انتساب به {{model_detail_contract.SupervisorFullName}}: </span>
-        <span mat-line>{{model_detail_contract.AssignSupervisorDate ? model_detail_contract.AssignSupervisorDate : '---'}}</span>
+        <span mat-line> تاریخ انتساب به {{model_supervisor_contract.SupervisorFullName}}: </span>
+        <span mat-line class="date-time">{{model_supervisor_contract.AssignSupervisorDate ? model_supervisor_contract.AssignSupervisorDate : '---'}}</span>
     </div>
     <div class="row list-item-fa">
         <span mat-line> تاریخ شروع سفارش: </span>
-        <span mat-line>{{model_detail_contract.StartDate ? model_detail_contract.StartDate : '---'}}</span>
+        <span mat-line class="date-time">{{model_detail_contract.StartDate ? model_detail_contract.StartDate : '---'}}</span>
     </div>
     <div class="row list-item-fa">
         <span mat-line> تاریخ پایان سفارش: </span>
-        <span mat-line>{{model_detail_contract.EndDate ? model_detail_contract.EndDate : '---'}}</span>
+        <span mat-line class="date-time">{{model_detail_contract.EndDate ? model_detail_contract.EndDate : '---'}}</span>
     </div>
 
     <div class=" row list-item-fa" *ngIf="model_detail_contract.EndDate==null">
         <mat-form-field class="col-xs-9">
             <mat-label>مسئول خط</mat-label>
             <mat-select [(value)]="model_personel.IDPersonel" name="IDPersonel">
-                <mat-option *ngFor="let item of res_personel_supervisors" [value]="item.IDPersonel">
-                    <span (click)="btn_enable_assign_supervisor()">{{item.FullName}}</span>
+                <mat-option *ngFor="let item of res_personel_supervisors" [value]="item.IDPersonel" (click)="btn_enable_assign_supervisor()">
+                    <span>{{item.FullName}}</span>
                 </mat-option>
             </mat-select>
         </mat-form-field>

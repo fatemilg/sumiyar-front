@@ -19,11 +19,16 @@ export class PersonelService {
   get_personel_all() {
     return this.http.get<XResult>(this.base_url + 'get_personel_all')
   }
+
+  get_personel_role_all() {
+    return this.http.get<XResult>(this.base_url + 'get_personel_role_all')
+  }
+  
   get_personel_supervisor() {
     return this.http.get<XResult>(this.base_url + 'get_personel_supervisor')
   }
-  edit_personel(Id: number) {
-    return this.http.get<XResult>(this.base_url + 'edit_personel/' + Id)
+  edit_personel(id_personel: number) {
+    return this.http.get<XResult>(this.base_url + 'edit_personel/' + id_personel)
   }
 
   add_update_personel(personel: Personel): Observable<XResult> {
@@ -35,6 +40,9 @@ export class PersonelService {
     return this.http.post<XResult>(this.base_url + 'update_active_status', personel)
   }
 
+  update_password(personel: Personel): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_password', personel)
+  }
 
 
 }

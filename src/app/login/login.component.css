@@ -25,20 +25,9 @@
     box-shadow: 4px 5px #f3f3f3;
 }
 
-.mat-card-title {
-    text-align: center;
-    font-family: 'IranSans';
-    font-size: 14px;
-    font-weight: 600;
-    width: 100%;
-    float: right;
-    padding-top: 25px;
-    color: #3f51b5;
-}
-
 .mat-form-field {
     font-family: 'IranSans';
-    direction: rtl;
+    direction: ltr;
     text-align: left;
 }
 
@@ -50,4 +39,19 @@
 .row-buttons {
     padding-bottom: 10px;
     justify-content: flex-end;
+}
+
+.login-header {
+    border: 1px solid lightgray;
+    box-shadow: 4px 5px #f3f3f3;
+    margin: auto;
+    width: 45%;
+    justify-content: center;
+    display: flex;
+    font-family: 'IranSans';
+    background-color: #3f51b5;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 1px;
 }

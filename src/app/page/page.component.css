@@ -1,14 +1,14 @@
-.btn_main_menu_header {
+.btn-main-menu-header {
     outline: none;
 }
 
-.mat_icon_header_menu {
+.mat-icon-header-menu {
     color: white;
     margin-bottom: 9px;
     outline: none;
 }
 
-.menu_item {
+.menu-item {
     outline: none;
     font-family: 'IranSans';
     font-size: 15px;
@@ -16,6 +16,10 @@
     padding-right: 0px;
 }
 
-.mat_icon_menu_item {
+.mat-icon-menu-item {
     padding-left: 10px;
+}
+
+.login-user {
+    margin-right: 20%;
 }

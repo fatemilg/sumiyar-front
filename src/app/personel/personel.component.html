@@ -3,7 +3,7 @@
 <mat-toolbar id="personel_container">
     <span>تعریف پرسنل</span>
 </mat-toolbar>
-<mat-card >
+<mat-card>
     <mat-card-content>
         <form class="container " #perosnel_form="ngForm">
             <div class="row row-buttons">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="table-container mat-elevation-z8">
-                <table mat-table [dataSource]="data_source" class="personel-table" dir="rtl">
+                <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl">
                     <ng-container matColumnDef="Actions">
                         <th mat-header-cell *matHeaderCellDef> ویرایش </th>
                         <td mat-cell *matCellDef="let element">

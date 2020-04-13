@@ -18,11 +18,6 @@
     width: 100%;
 }
 
-.detail-table {
-    color: blue;
-    cursor: pointer;
-}
-
 .filter {
     direction: rtl;
 }

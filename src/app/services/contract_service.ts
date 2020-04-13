@@ -18,19 +18,22 @@ export class ContractService {
   get_contracts_all() {
     return this.http.get<XResult>(this.base_url + 'get_contracts_all')
   }
+  
   get_contracts_in_line() {
     return this.http.get<XResult>(this.base_url + 'get_contracts_in_line')
   }
-  get_detail_contract(Id: number) {
-    return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + Id)
+  get_detail_contract(id_contract: number) {
+    return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + id_contract)
   }
 
   update_start_date(contract: Contract): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'update_start_date', contract)
   }
-  update_supervisor(contract: Contract): Observable<XResult> {
-    return this.http.post<XResult>(this.base_url + 'update_supervisor', contract)
+  update_end_date(contract: Contract): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_end_date', contract)
   }
+
+
 
 }
 

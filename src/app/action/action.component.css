@@ -64,6 +64,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     box-shadow: 4px 5px #f3f3f3;
+    margin-bottom: 20px;
 }
 
 .duration-title {
@@ -79,8 +80,4 @@
 
 .mat-autocomplete {
     direction: ltr;
-}
-
-.contract-input {
-    text-align: left;
 }

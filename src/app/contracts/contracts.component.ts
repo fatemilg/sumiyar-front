@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ContractService } from '../services/contract.service';
+import { ContractService } from '../services/contract_service';
 import { XResult } from '../models/Xresult';
 import { Contract } from '../models/Contract';
 import { GeneralFunc } from '../scripts/general_func';
-import { MatPaginator, MatTableDataSource, MatSort, MatBottomSheetRef, MatBottomSheet } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatBottomSheet } from '@angular/material';
 import { DetailContractsComponent } from '../detail-contracts/detail-contracts.component';
 
 @Component({

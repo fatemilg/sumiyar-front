@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { TaskHistory } from '../models/TaskHistory';
-import { TaskHistoryService } from '../services/task_history.service';
+import { TaskHistoryService } from '../services/task_history_service';
 import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
 
@@ -67,9 +67,9 @@ export class TaskHistoryComponent implements OnInit {
 
 
   delete_task_history_by_Id(item) {
-    this.visible_progress = true;
     let c = confirm("آیا مطمئن هستید ?");
     if (c) {
+      this.visible_progress = true;
       return this.task_history_service
         .delete_task_history_by_Id(item)
         .subscribe((data: XResult) => {
@@ -82,10 +82,6 @@ export class TaskHistoryComponent implements OnInit {
 
         });
     }
-    else {
-      this.visible_progress = false;
-    }
-
   }
 
   clear_form_task_history() {

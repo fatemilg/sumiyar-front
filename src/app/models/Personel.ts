@@ -8,6 +8,7 @@ export class Personel {
     Password: string;
     Active: boolean;
 
+    RepeatPassword: string;
 
     Personel()
     {
@@ -15,6 +16,7 @@ export class Personel {
       this.LName='';
       this.UserName='';
       this.Password='';
+      this.RepeatPassword='';
 
     }
   }

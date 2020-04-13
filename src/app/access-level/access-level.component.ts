@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonelService } from '../services/personel.service';
+import { PersonelService } from '../services/personel_service';
 import { GeneralFunc } from '../scripts/general_func';
 import { Personel } from '../models/Personel';
 import { XResult } from '../models/Xresult';
 import { AccessLevel } from '../models/AccessLevel';
-import { AccessLevelService } from '../services/access_level.service';
+import { AccessLevelService } from '../services/access_level_service';
 
 @Component({
   selector: 'app-access-level',
@@ -26,10 +26,10 @@ export class AccessLevelComponent implements OnInit {
   visible_progress: boolean;
 
 
-  get_personel_all() {
+  get_personel_role_all() {
     this.visible_progress = true;
     return this.personel_service
-      .get_personel_all()
+      .get_personel_role_all()
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.res_personels = data.Value;
@@ -90,7 +90,7 @@ export class AccessLevelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.get_personel_all();
+    this.get_personel_role_all();
   }
 
 

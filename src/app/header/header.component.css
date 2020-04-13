@@ -1,4 +1,4 @@
-.header_title {
+.header-title {
     font-family: 'IranSans';
     font-size: 15px;
 }
@@ -11,4 +11,10 @@
     position: fixed;
     z-index: 1000 !important;
     top: 0 !important;
+}
+
+.user-name-in-header {
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 13px;
 }

@@ -1,5 +1,6 @@
 <mat-toolbar color="primary" class="header">
-    <span class="header_title">نرم افزار سومیار</span>
+    <span class="header-title">SUMIYAR</span>
     <span class="header-remaining-space"></span>
+    <span class="user-name-in-header" *ngIf="check_is_login()">{{user_login.UserName}}  عزیر خوش آمدید</span>
     <app-menu *ngIf="check_is_login()"></app-menu>
 </mat-toolbar>

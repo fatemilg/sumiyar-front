@@ -28,7 +28,8 @@ import {
   MatSortModule,
   MatBottomSheetModule,
   MatProgressSpinnerModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -60,7 +61,8 @@ import {
     MatSortModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatButtonModule,
@@ -88,7 +90,8 @@ import {
     MatSortModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSlideToggleModule
   ],
   providers: [
     MatDatepickerModule,

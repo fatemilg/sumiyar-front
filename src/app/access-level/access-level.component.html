@@ -11,8 +11,8 @@
                     <mat-label>پرسنل</mat-label>
                     <mat-select name="IDPersonel">
                         <mat-option (click)=hide_Page_list()>---</mat-option>
-                        <mat-option *ngFor="let item of res_personels" [value]="item.IDPersonel">
-                            <span (click)=add_all_pages_for_personel(item.IDPersonel)>{{item.FName+' '+item.LName}}</span>
+                        <mat-option *ngFor="let item of res_personels" [value]="item.IDPersonel" (click)=add_all_pages_for_personel(item.IDPersonel)>
+                            <span>{{item.FullName+' - '+ item.RoleTitle}}</span>
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

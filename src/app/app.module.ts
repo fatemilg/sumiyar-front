@@ -21,6 +21,8 @@ import { ContractsComponent } from './contracts/contracts.component';
 import { DetailContractsComponent } from './detail-contracts/detail-contracts.component';
 import { ActionComponent } from './action/action.component';
 import { TaskHistoryComponent } from './task-history/task-history.component';
+import { SupervisorContractsComponent } from './supervisor-contracts/supervisor-contracts.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 // import { CookieService } from 'ng2-cookies';
@@ -41,7 +43,9 @@ import { TaskHistoryComponent } from './task-history/task-history.component';
     ActionComponent,
     ContractsComponent,
     DetailContractsComponent,
-    TaskHistoryComponent
+    TaskHistoryComponent,
+    SupervisorContractsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TokenService } from '../services/token.service';
+import { TokenService } from '../services/token_service';
+import { Claim } from '../models/Claim';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(private token_service: TokenService) { }
 
+
+  user_login: Claim;
+
   check_is_login() {
-    if (this.token_service.is_authenticated())
+    if (this.token_service.is_authenticated()) {
+      this.user_login = this.token_service.getUserPayload();
       return true;
+    }
     else
       return false;
   }
+
   ngOnInit() {
 
   }

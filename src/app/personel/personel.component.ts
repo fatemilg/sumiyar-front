@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { PersonelService } from '../services/personel.service';
+import { PersonelService } from '../services/personel_service';
 import { Role } from '../models/Role';
-import { RoleService } from '../services/role.service';
+import { RoleService } from '../services/role_service';
 import { XResult } from '../models/Xresult';
 import { Personel } from '../models/Personel';
 import { GeneralFunc } from '../scripts/general_func';

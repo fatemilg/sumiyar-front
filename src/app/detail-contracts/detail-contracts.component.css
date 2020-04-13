@@ -67,3 +67,7 @@
 .mat-line {
     padding-right: 10px;
 }
+
+.date-time {
+    direction: ltr;
+}
