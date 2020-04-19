@@ -9,6 +9,7 @@ import { ContractsComponent } from './contracts/contracts.component';
 import { ActionComponent } from './action/action.component';
 import { SupervisorContractsComponent } from './supervisor-contracts/supervisor-contracts.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ActivityInContractByPersonelComponent } from './reports/activity-in-contract-by-personel/activity-in-contract-by-personel.component';
 
 
 
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'tasks', component: TasksComponent, canActivate: [AuthGuard] },
   { path: 'contracts', component: ContractsComponent, canActivate: [AuthGuard] },
   { path: 'supervisor-contract', component: SupervisorContractsComponent, canActivate: [AuthGuard] },
+  { path: 'reports/activity-in-contract-by-personel', component: ActivityInContractByPersonelComponent, canActivate: [AuthGuard] },
+
 
   { path: '404', component : NotFoundComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full', canActivate: [AuthGuard] },

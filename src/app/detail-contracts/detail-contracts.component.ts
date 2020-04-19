@@ -85,7 +85,7 @@ export class DetailContractsComponent implements OnInit {
         (data: XResult) => {
           if (data.IsOK) {
             this.get_detail_contract(this.id_contract);
-            this.get_supervisor_by_contract(this.id_contract);
+            this.get_last_supervisor_by_contract(this.id_contract);
            
           }
 
@@ -95,10 +95,10 @@ export class DetailContractsComponent implements OnInit {
         })
   }
 
-  get_supervisor_by_contract(id_contract) {
+  get_last_supervisor_by_contract(id_contract) {
     this.visible_progress = true;
     return this.supervisor_contract_service
-      .get_supervisor_by_contract(id_contract)
+      .get_last_supervisor_by_contract(id_contract)
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
@@ -122,7 +122,7 @@ export class DetailContractsComponent implements OnInit {
   ngOnInit() {
     this.get_detail_contract(this.id_contract);
     this.get_personel_supervisor();
-    this.get_supervisor_by_contract(this.id_contract);
+    this.get_last_supervisor_by_contract(this.id_contract);
   }
 
 }

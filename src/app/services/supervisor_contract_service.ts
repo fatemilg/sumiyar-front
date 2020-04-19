@@ -18,8 +18,11 @@ export class SupervisorContractService {
   get_contracts_by_supervisor(id_personel: number) {
     return this.http.get<XResult>(this.base_url + 'get_contracts_by_supervisor/'+ id_personel)
   }
-  get_supervisor_by_contract(id_contract: number) {
-    return this.http.get<XResult>(this.base_url + 'get_supervisor_by_contract/'+ id_contract)
+  get_last_supervisor_by_contract(id_contract: number) {
+    return this.http.get<XResult>(this.base_url + 'get_last_supervisor_by_contract/'+ id_contract)
+  }
+  get_all_supervisors_by_contract(id_contract: number) {
+    return this.http.get<XResult>(this.base_url + 'get_all_supervisors_by_contract/'+ id_contract)
   }
   add_supervisor_contract(supervisor_contract: SupervisorContract): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'add_supervisor_contract', supervisor_contract)

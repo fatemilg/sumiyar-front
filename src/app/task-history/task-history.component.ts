@@ -70,6 +70,7 @@ export class TaskHistoryComponent implements OnInit {
     let c = confirm("آیا مطمئن هستید ?");
     if (c) {
       this.visible_progress = true;
+      item.IDTask = this.id_task;
       return this.task_history_service
         .delete_task_history_by_Id(item)
         .subscribe((data: XResult) => {

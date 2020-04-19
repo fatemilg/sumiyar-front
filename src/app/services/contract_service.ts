@@ -19,9 +19,13 @@ export class ContractService {
     return this.http.get<XResult>(this.base_url + 'get_contracts_all')
   }
   
-  get_contracts_in_line() {
-    return this.http.get<XResult>(this.base_url + 'get_contracts_in_line')
+  get_contracts_is_started_and_not_end() {
+    return this.http.get<XResult>(this.base_url + 'get_contracts_is_started_and_not_end')
   }
+  get_contracts_just_is_started() {
+    return this.http.get<XResult>(this.base_url + 'get_contracts_just_is_started')
+  }
+
   get_detail_contract(id_contract: number) {
     return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + id_contract)
   }

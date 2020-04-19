@@ -80,7 +80,7 @@ export class ActionComponent implements OnInit {
   get_contracts_in_line() {
     this.visible_progress = true;
     return this.contract_service
-      .get_contracts_in_line()
+      .get_contracts_is_started_and_not_end()
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
