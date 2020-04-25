@@ -25,10 +25,8 @@ import { SupervisorContractsComponent } from './supervisor-contracts/supervisor-
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ActivityInContractByPersonelComponent } from './reports/activity-in-contract-by-personel/activity-in-contract-by-personel.component'
 import { Report2Component } from './reports/report2/report2.component';
-
-
-// import { CookieService } from 'ng2-cookies';
-
+import { CookieService } from 'ng2-cookies';
+import { DigitalClockComponent } from './digital-clock/digital-clock.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +47,8 @@ import { Report2Component } from './reports/report2/report2.component';
     SupervisorContractsComponent,
     ChangePasswordComponent,
     ActivityInContractByPersonelComponent,
-    Report2Component
+    Report2Component,
+    DigitalClockComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -60,12 +59,12 @@ import { Report2Component } from './reports/report2/report2.component';
     AngularMaterialModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ DetailContractsComponent,TaskHistoryComponent],
+  entryComponents: [DetailContractsComponent, TaskHistoryComponent],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
-    multi: true
-  }],
+    multi: true,
+  }, CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -61,7 +61,7 @@ export class ActionComponent implements OnInit {
             if (this.res_last_action_personel.EndDate == null) // iani akharin action hanooz baz hast va be payan nareside
             {
               this.is_finish_last_action = false;
-              this.passed_time = data.Value.PassedTime;
+              this.model_action.PassedTime = data.Value.PassedTime;
             }
             else {
               this.is_finish_last_action = true;
@@ -161,7 +161,7 @@ export class ActionComponent implements OnInit {
 
 
   start_action() {
-    let c = confirm("آیا مطمئن هستید ?");
+    let c = confirm("آیا مطمئن هستید فعالیتی را اغاز کنید ?");
     if (c) {
       this.visible_progress = true;
       let item = new Action()
@@ -182,7 +182,7 @@ export class ActionComponent implements OnInit {
   }
 
   end_action() {
-    let c = confirm("آیا مطمئن هستید ?");
+    let c = confirm(" آیا مطمئن هستید فعالیت را به اتمام برسانید ?");
     if (c) {
       this.visible_progress = true;
       this.model_action.IDContract = this.contract_control.value.IDContract;
@@ -202,7 +202,7 @@ export class ActionComponent implements OnInit {
   }
 
   refuse_action() {
-    let c = confirm("آیا مطمئن هستید ?");
+    let c = confirm("آیا مطمئن  هستید از انجام عملیات صرف نظر کنید ?");
     if (c) {
       this.visible_progress = true;
       let item = new Action()

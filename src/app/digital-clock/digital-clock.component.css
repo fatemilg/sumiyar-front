@@ -1,0 +1,21 @@
+.clock-container {
+    background-color: white;
+    border-color: #c3e6cb;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 4px 5px #f3f3f3;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+
+.time {
+    font-family: 'IranSans';
+    width: 100% !important;
+    color: #797979;
+    letter-spacing: 6px;
+    font-size: 30px;
+    font-weight: 600;
+}

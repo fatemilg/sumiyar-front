@@ -1,20 +1,19 @@
 <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
 </mat-spinner>
 
-<mat-toolbar id="personel_container">
-    <span>ثبت فعالیت ها</span>
-</mat-toolbar>
 <mat-card>
     <mat-card-content>
+        <app-digital-clock></app-digital-clock>
         <form class="container" #action_form="ngForm">
-            <div class="row row-buttons">
-                <button mat-fab color="accent" (click)=start_action(); [disabled]="!is_finish_last_action">شروع</button>
-            </div>
-            <div class="row alert-duration" *ngIf="!is_finish_last_action">
-                <span class="duration-title">مدت زمان سپری شده : </span>
-                <span class="duration-time"> {{passed_time}}</span>
+            <div class="row row-buttons-top">
+                <button class="start-action" mat-fab color="primary" (click)=start_action(); *ngIf="is_finish_last_action">شروع</button>
             </div>
             <div class="row" *ngIf="!is_finish_last_action">
+                <mat-form-field class="col-xs-12">
+                    <mat-label> مدت زمان سپری شده : </mat-label>
+                    <input matInput [(ngModel)]="model_action.PassedTime" name="PassedTime" disabled style="color:black">
+                </mat-form-field>
+
                 <mat-form-field class="col-xs-12">
                     <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts" required>
                     <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
@@ -52,9 +51,9 @@
                 </mat-form-field>
 
             </div>
-            <div class="row row-buttons">
-                <button mat-mini-fab class="mat-fab-finish" color="primary" (click)=end_action(); [disabled]="!action_form.form.valid || is_finish_last_action || !visible_other_elements ">پایان</button>
-                <button mat-mini-fab color="warn" (click)=refuse_action(); [disabled]="is_finish_last_action">انصراف</button>
+            <div class="row row-buttons-bottom" *ngIf="!is_finish_last_action">
+                <button mat-mini-fab class="end-action" color="primary" (click)=end_action(); [disabled]="!action_form.form.valid || is_finish_last_action || !visible_other_elements ">پایان</button>
+                <button mat-mini-fab class=refuse-action (click)=refuse_action(); [disabled]="is_finish_last_action">انصراف</button>
 
             </div>
         </form>
