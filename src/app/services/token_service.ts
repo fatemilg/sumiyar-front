@@ -19,17 +19,17 @@ export class TokenService {
   readonly base_url = this.envUrl.urlAddress + '/api/Token/';
 
   set_token(token: string) {
-    localStorage.setItem('Token', token);
+    sessionStorage.setItem('Token', token);
   }
   get_token() {
-    return localStorage.getItem('Token');
+    return sessionStorage.getItem('Token');
   }
   is_authenticated() {
     if (this.get_token() == null || this.get_token() == 'null') return false;
     else return true;
   }
   remove_token() {
-    localStorage.removeItem('Token');
+    sessionStorage.removeItem('Token');
     this.router.navigate(["login"]);
   }
 
