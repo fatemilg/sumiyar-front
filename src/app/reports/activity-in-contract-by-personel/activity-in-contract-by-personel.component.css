@@ -1,0 +1,61 @@
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.mat-toolbar {
+    justify-content: center;
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.mat-select {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+.mat-option {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+::ng-deep .mat-option-text {
+    padding-right: 20px;
+}
+
+.set-border {
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    box-shadow: 4px 5px #f3f3f3;
+    margin: 12px 0 12px 0;
+}
+
+.filters {
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.details {
+    font-family: 'IranSans';
+    font-size: 12px;
+    text-align: right;
+    direction: rtl;
+}
+
+.mat-autocomplete {
+    direction: ltr;
+}
+
+.mat-raised-button {
+    font-family: 'IranSans';
+    margin-right: 5px;
+    margin-top: 9px;
+}

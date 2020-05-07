@@ -1,0 +1,61 @@
+<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+</mat-spinner>
+
+<mat-card>
+    <mat-card-content>
+        <app-digital-clock></app-digital-clock>
+        <form class="container" #action_form="ngForm">
+            <div class="row row-buttons-top">
+                <button class="start-action" mat-fab color="primary" (click)=start_action(); *ngIf="is_finish_last_action">شروع</button>
+            </div>
+            <div class="row" *ngIf="!is_finish_last_action">
+                <mat-form-field class="col-xs-12">
+                    <mat-label> مدت زمان سپری شده : </mat-label>
+                    <input matInput [(ngModel)]="model_action.PassedTime" name="PassedTime" disabled style="color:black">
+                </mat-form-field>
+
+                <mat-form-field class="col-xs-12">
+                    <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts" required>
+                    <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
+                        <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
+                            {{item.GenerateContarctNumber}}
+                        </mat-option>
+                    </mat-autocomplete>
+
+                </mat-form-field>
+                <mat-form-field class="col-xs-12" *ngIf="visible_task_category_list">
+                    <mat-label>دسته بندی </mat-label>
+                    <mat-select name="IDTaskCategory">
+                        <mat-option *ngFor="let item of res_task_categories" [value]="item.IDTaskCategory" (click)=get_task_by_task_category(item.IDTaskCategory)>
+                            <span>{{item.Title}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-xs-12" *ngIf="visible_task_list">
+                    <mat-label>وظیفه</mat-label>
+                    <mat-select [(value)]="model_action.IDTask" name="IDTask">
+                        <mat-option *ngFor="let item of res_tasks" [value]="item.IDTask" (click)="select_task_item()">
+                            {{item.Title}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="col-xs-12" *ngIf="visible_other_elements">
+                    <input matInput [(ngModel)]="model_action.Count" name="Count" placeholder="تعداد " required maxlength="10" numbersOnly>
+                </mat-form-field>
+
+                <mat-form-field class="col-xs-12" *ngIf="visible_other_elements">
+                    <textarea matInput [(ngModel)]="model_action.Description" name="Description" placeholder="توضیحات " maxlength="1000"></textarea>
+                </mat-form-field>
+
+            </div>
+            <div class="row row-buttons-bottom" *ngIf="!is_finish_last_action">
+                <button mat-mini-fab class="end-action" color="primary" (click)=end_action(); [disabled]="!action_form.form.valid || is_finish_last_action || !visible_other_elements ">پایان</button>
+                <button mat-mini-fab class=refuse-action (click)=refuse_action(); [disabled]="is_finish_last_action">انصراف</button>
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

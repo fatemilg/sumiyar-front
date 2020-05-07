@@ -1,0 +1,104 @@
+.mat-toolbar {
+    text-align: right;
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.mat-select {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+.mat-option {
+    direction: rtl;
+    text-align: right;
+    font-family: 'IranSans';
+}
+
+::ng-deep .mat-option-text {
+    padding-right: 20px;
+}
+
+.row-buttons-top {
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.row-buttons-bottom {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.start-action {
+    font-family: 'IranSans';
+    width: 180px;
+    height: 180px;
+    font-size: 23px;
+    margin-top: 25%;
+}
+
+.refuse-action {
+    background-color: red;
+    font-family: 'IranSans';
+    width: 110px;
+    height: 110px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.end-action {
+    background-color: green;
+    font-family: 'IranSans';
+    width: 110px;
+    height: 110px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+::-webkit-resizer {
+    border-bottom: 2px solid gray;
+    border-left: 2px solid gray;
+}
+
+.alert-duration {
+    font-family: 'IranSans';
+    color: #155724;
+    background-color: #6497b1;
+    border-color: #c3e6cb;
+    flex-direction: row-reverse;
+    padding-right: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-shadow: 4px 5px #f3f3f3;
+    width: 85%;
+    margin: auto;
+}
+
+.duration-title {
+    text-align: right;
+    direction: rtl;
+}
+
+.duration-time {
+    text-align: right;
+    direction: rtl;
+    padding-right: 10px;
+}
+
+.mat-autocomplete {
+    direction: ltr;
+}
+
+.passed-time {
+    color: #676767;
+}

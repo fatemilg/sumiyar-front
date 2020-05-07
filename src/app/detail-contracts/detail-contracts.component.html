@@ -1,0 +1,68 @@
+<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+</mat-spinner>
+
+<mat-nav-list>
+    <div class="row list-item-fa">
+        <span mat-line>شماره قرارداد: </span>
+        <span mat-line>{{model_detail_contract.ContarctNumber}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>شماره سفارش: </span>
+        <span mat-line>{{model_detail_contract.OrderNumber}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>تعداد : </span>
+        <span mat-line>{{model_detail_contract.Count}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>متراژ : </span>
+        <span mat-line>{{model_detail_contract.Meter}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>تاریخ صدور حواله: </span>
+        <span mat-line class="date-time"> {{model_detail_contract.OrderCompleteDate}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ انتساب به {{model_supervisor_contract.SupervisorFullName}}: </span>
+        <span mat-line class="date-time">{{model_supervisor_contract.AssignSupervisorDate ? model_supervisor_contract.AssignSupervisorDate : '---'}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ شروع سفارش: </span>
+        <span mat-line class="date-time">{{model_detail_contract.StartDate ? model_detail_contract.StartDate : '---'}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ پایان سفارش: </span>
+        <span mat-line class="date-time">{{model_detail_contract.EndDate ? model_detail_contract.EndDate : '---'}}</span>
+    </div>
+
+    <div class=" row list-item-fa" *ngIf="model_detail_contract.EndDate==null">
+        <mat-form-field class="col-xs-9">
+            <mat-label>مسئول خط</mat-label>
+            <mat-select [(value)]="model_personel.IDPersonel" name="IDPersonel">
+                <mat-option *ngFor="let item of res_personel_supervisors" [value]="item.IDPersonel" (click)="btn_enable_assign_supervisor()">
+                    <span>{{item.FullName}}</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-xs-3 row-buttons">
+            <button mat-raised-button color="warn" (click)=assign_supervisor_contract() [disabled]="is_disable_assign_supervisor"> انتساب</button>
+        </div>
+
+    </div>
+
+    <div class="row list-item-en">
+        <span mat-line>Product: </span>
+        <span mat-line>{{model_detail_contract.ProductName}}</span>
+    </div>
+
+    <div class="row list-item-en description-product">
+        <span mat-line>Description: </span>
+        <span mat-line>{{model_detail_contract.Description}}</span>
+    </div>
+
+
+
+
+
+
+</mat-nav-list>

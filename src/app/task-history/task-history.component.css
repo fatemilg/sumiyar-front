@@ -1,0 +1,35 @@
+.mat-toolbar {
+    text-align: right;
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    height: 40px;
+}
+
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.row-buttons {
+    padding-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.mat-raised-button {
+    font-family: 'IranSans';
+    margin-right: 5px;
+}
+
+.custom_table {
+    font-family: 'IranSans';
+    width: 100%;
+}
+
+.delete-table {
+    color: red;
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+.mat-toolbar {
+    text-align: right;
+    direction: rtl;
+    font-family: 'IranSans';
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.mat-form-field {
+    font-family: 'IranSans';
+    direction: rtl;
+    text-align: right;
+}
+
+.custom_table {
+    font-family: 'IranSans';
+    width: 100%;
+}
+
+.filter {
+    direction: rtl;
+}

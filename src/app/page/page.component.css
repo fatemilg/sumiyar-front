@@ -1,0 +1,25 @@
+.btn-main-menu-header {
+    outline: none;
+}
+
+.mat-icon-header-menu {
+    color: white;
+    margin-bottom: 9px;
+    outline: none;
+}
+
+.menu-item {
+    outline: none;
+    font-family: 'IranSans';
+    font-size: 15px;
+    text-align: right;
+    padding-right: 0px;
+}
+
+.mat-icon-menu-item {
+    padding-left: 10px;
+}
+
+.login-user {
+    margin-right: 20%;
+}
