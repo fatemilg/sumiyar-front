@@ -21,6 +21,12 @@ export class ActionService {
   get_last_action_by_personel(id_personel: number) {
     return this.http.get<XResult>(this.base_url + 'get_last_action_by_personel/' + id_personel)
   }
+  get_last_finished_action_by_personel(id_personel: number) {
+    return this.http.get<XResult>(this.base_url + 'get_last_finished_action_by_personel/' + id_personel)
+  }
+  get_all_actions_by_personel(id_personel: number) {
+    return this.http.get<XResult>(this.base_url + 'get_all_actions_by_personel/' + id_personel)
+  }
   get_personles_worked_in_contract(id_contract: number) {
     return this.http.get<XResult>(this.base_url + 'get_personles_worked_in_contract/' + id_contract)
   }

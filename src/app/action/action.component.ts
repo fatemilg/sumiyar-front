@@ -13,7 +13,7 @@ import { TokenService } from '../services/token_service';
 import { TaskCategoryService } from '../services/task_category_service';
 import { TaskCategory } from '../models/TaskCategory';
 import { TaskService } from '../services/task_service';
-
+import { MatTableDataSource } from '@angular/material';
 
 
 @Component({
@@ -37,17 +37,20 @@ export class ActionComponent implements OnInit {
   res_tasks: Task[];
   res_last_action_personel: Action;
 
-  visible_task_category_list: boolean = false;
-  visible_task_list: boolean = false;
-  visible_other_elements: boolean = false;
+
   is_finish_last_action: boolean = false;
   visible_progress: boolean;
 
   id_personel: number = this.token_service.getUserPayload().IDPersonel;
+  id_industry: number = 1;
   id_last_action_by_personel: number;
   contract_control = new FormControl();
   filtered_contract: Observable<Contract[]>;
   passed_time: string;
+
+  //table-config
+  displayed_columns: string[] = ['ContarctNumber', 'OrderNumber', 'Count', 'TaskTitle', 'StartDateAction', 'EndDateAction'];
+  data_source: MatTableDataSource<Action>;
 
   get_last_action_by_personel(id_personel) {
     this.visible_progress = true;
@@ -75,6 +78,43 @@ export class ActionComponent implements OnInit {
         })
   }
 
+  get_last_finished_action_by_personel(id_personel) {
+    this.visible_progress = true;
+    return this.action_service
+      .get_last_finished_action_by_personel(id_personel)
+      .subscribe(
+        (data: XResult) => {
+          if (data.IsOK) {
+            this.model_action.IDTaskCategory = data.Value[0].IDTaskCategory
+
+            this.model_action.IDTask = data.Value[0].IDTask;
+
+            this.get_task_by_task_category(data.Value[0].IDTaskCategory);
+         
+            //let contract = new Contract();
+            //contract.GenerateContarctNumber = data.Value[0].GenerateContarctNumber;
+            //this.display_selected_contract_item(contract);
+            this.contract_control.setValue({ item: data.Value[0].IDContract, GenerateContarctNumber: data.Value[0].GenerateContarctNumber});
+          }
+          this.visible_progress = false;
+
+        })
+  }
+
+  get_all_actions_by_personel(id_personel) {
+    this.visible_progress = true;
+    return this.action_service
+      .get_all_actions_by_personel(id_personel)
+      .subscribe((data: XResult) => {
+        if (data.IsOK) {
+          this.data_source = new MatTableDataSource(data.Value);
+        }
+        else {
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+        }
+        this.visible_progress = false;
+      })
+  }
 
 
   get_contracts_in_line() {
@@ -89,7 +129,8 @@ export class ActionComponent implements OnInit {
               .pipe(
                 startWith(''),
                 map(x => x ? this.filter_contracts(x) : this.res_contracts.slice())
-              );
+            );
+
           }
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -99,15 +140,6 @@ export class ActionComponent implements OnInit {
         })
   }
 
-  auto_contracts_select_change(evt: any) {
-    if (evt.source.selected) {
-      this.visible_task_category_list = true;
-      this.get_task_category_by_industry(evt.source.value.IDIndustry);
-    }
-    else {
-      this.visible_task_category_list = false;
-    }
-  }
 
   get_task_category_by_industry(id_industry) {
     this.visible_progress = true;
@@ -118,7 +150,6 @@ export class ActionComponent implements OnInit {
           this.res_task_categories = data.Value;
         }
         else {
-          this.visible_task_list = false;
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
         this.visible_progress = false;
@@ -132,8 +163,6 @@ export class ActionComponent implements OnInit {
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.res_tasks = data.Value;
-          this.visible_task_list = true;
-          this.visible_other_elements = false;
         }
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -142,12 +171,6 @@ export class ActionComponent implements OnInit {
       })
   }
 
-  select_task_item() {
-    this.visible_other_elements = true;
-  }
-
-
-
   display_selected_contract_item(contract: Contract): string {
     return contract && contract.GenerateContarctNumber ? contract.GenerateContarctNumber : '';
   }
@@ -155,10 +178,6 @@ export class ActionComponent implements OnInit {
   private filter_contracts(value: string): Contract[] {
     return this.res_contracts.filter(x => x.GenerateContarctNumber.toLowerCase().includes(value));
   }
-
-
-
-
 
   start_action() {
     let c = confirm("آیا مطمئن هستید فعالیتی را اغاز کنید ?");
@@ -187,11 +206,13 @@ export class ActionComponent implements OnInit {
       this.visible_progress = true;
       this.model_action.IDContract = this.contract_control.value.IDContract;
       this.model_action.IDAction = this.id_last_action_by_personel;
+      this.model_action.IDPersonel = this.id_personel;
       return this.action_service
         .end_action(this.model_action)
         .subscribe((data: XResult) => {
           if (data.IsOK) {
             this.is_finish_last_action = true;
+            this.get_all_actions_by_personel(this.id_personel)
           }
           this.general_func.ShowMessage(data.Message, data.IsOK);
           this.visible_progress = false;
@@ -221,9 +242,19 @@ export class ActionComponent implements OnInit {
       this.visible_progress = false;
   }
 
+  apply_filter(filter_value: string) {
+    filter_value = filter_value.trim(); // Remove whitespace
+    filter_value = filter_value.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.data_source.filter = filter_value;
+  }
+
   ngOnInit() {
-    this.get_last_action_by_personel(this.id_personel)
     this.get_contracts_in_line();
+    this.get_last_action_by_personel(this.id_personel)
+    this.get_task_category_by_industry(this.id_industry);
+    this.get_all_actions_by_personel(this.id_personel);
+
+    this.get_last_finished_action_by_personel(this.id_personel)
   }
 
 }
