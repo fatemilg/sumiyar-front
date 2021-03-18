@@ -39,6 +39,9 @@ export class ActionService {
   refuse_action(action: Action): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'refuse_action', action)
   }
+  get_detail_action(id_action: number) {
+    return this.http.get<XResult>(this.base_url + 'get_detail_action/' + id_action)
+  }
 
 
 }

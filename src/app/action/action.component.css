@@ -120,3 +120,13 @@
 .filter {
     direction: rtl;
 }
+
+.WellStatus {
+ color:forestgreen;
+}
+.NormalStatus {
+  color: yellow;
+}
+.BadStatus {
+  color: red;
+}
