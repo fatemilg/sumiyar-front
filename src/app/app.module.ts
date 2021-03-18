@@ -27,6 +27,7 @@ import { ActivityInContractByPersonelComponent } from './reports/activity-in-con
 import { Report2Component } from './reports/report2/report2.component';
 import { CookieService } from 'ng2-cookies';
 import { DigitalClockComponent } from './digital-clock/digital-clock.component';
+import { DetailActionComponent } from './detail-action/detail-action.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DigitalClockComponent } from './digital-clock/digital-clock.component';
     ChangePasswordComponent,
     ActivityInContractByPersonelComponent,
     Report2Component,
-    DigitalClockComponent
+    DigitalClockComponent,
+    DetailActionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,7 +61,7 @@ import { DigitalClockComponent } from './digital-clock/digital-clock.component';
     AngularMaterialModule,
     ReactiveFormsModule
   ],
-  entryComponents: [DetailContractsComponent, TaskHistoryComponent],
+  entryComponents: [DetailContractsComponent, TaskHistoryComponent,DetailActionComponent ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

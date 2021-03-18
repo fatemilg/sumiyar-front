@@ -1,0 +1,42 @@
+<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+</mat-spinner>
+
+<mat-nav-list>
+    <div class="row list-item-fa">
+        <span mat-line>شماره قرارداد: </span>
+        <span mat-line>{{model_detail_action.ContarctNumber}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>شماره سفارش: </span>
+        <span mat-line>{{model_detail_action.OrderNumber}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>تعداد : </span>
+        <span mat-line>{{model_detail_action.Count}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>وظیفه : </span>
+        <span mat-line>{{model_detail_action.TaskTitle}}</span>
+    </div>
+
+    <div class="row list-item-fa">
+        <span mat-line>تاریخ شروع: </span>
+        <span mat-line class="date-time"> {{model_detail_action.StartDateAction}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line> تاریخ پایان :</span>
+        <span mat-line class="date-time"> {{model_detail_action.EndDateAction}}</span>
+    </div>
+
+    <div class="row list-item-fa">
+        <span mat-line> زمان انجام: </span>
+        <span mat-line>{{model_detail_action.CalculateDoneWorkTime}}</span>
+    </div>
+
+    <div class="row list-item-fa">
+        <span mat-line> انتظار سیستم : </span>
+        <span mat-line>{{model_detail_action.CalculateExceptionSystemTime}}</span>
+    </div>
+
+
+</mat-nav-list>

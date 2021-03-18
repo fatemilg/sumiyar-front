@@ -2,6 +2,7 @@ export class Action {
   IDAction: number;
   IDContract: number;
   IDTask: number;
+  IDTaskCategory: number;
   IDPersonel: number;
   Count: number;
   StartDate: Date;

@@ -102,3 +102,31 @@
 .passed-time {
     color: #676767;
 }
+
+.mat-tab-label {
+    font-family: 'IranSans';
+}
+
+.table-container {
+    height: 300px;
+    overflow: auto;
+}
+
+.custom_table {
+    font-family: 'IranSans';
+    width: 100%;
+}
+
+.filter {
+    direction: rtl;
+}
+
+.WellStatus {
+ color:forestgreen;
+}
+.NormalStatus {
+  color: yellow;
+}
+.BadStatus {
+  color: red;
+}
