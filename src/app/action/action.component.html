@@ -8,10 +8,10 @@
         <mat-tab-group animationDuration="0ms" mat-align-tabs="center" (selectedTabChange)="get_all_actions_by_personel($event)">
             <mat-tab label="Actions">
                 <form class="container" #action_form="ngForm">
-                    <div class="row row-buttons-top">
-                        <button class="start-action" mat-fab color="primary" (click)=start_action(); *ngIf="is_finish_last_action">شروع</button>
+                    <div class="row row-buttons-top" *ngIf="is_finish_last_action">
+                        <button class="start-action" mat-fab color="primary" (click)=start_action();>شروع</button>
                     </div>
-                    <div class="row" *ngIf="!is_finish_last_action">
+                    <div class="row" *ngIf="is_finish_last_action==false">
                         <mat-form-field class="col-xs-12">
                             <mat-label> مدت زمان سپری شده : </mat-label>
                             <input matInput [(ngModel)]="model_action.PassedTime" name="PassedTime" disabled style="color:black">
@@ -54,7 +54,7 @@
                         </mat-form-field>
 
                     </div>
-                    <div class="row row-buttons-bottom" *ngIf="!is_finish_last_action">
+                    <div class="row row-buttons-bottom" *ngIf="is_finish_last_action==false">
                         <button mat-mini-fab class="end-action" color="primary" (click)=end_action(); [disabled]="!action_form.form.valid || is_finish_last_action">پایان</button>
                         <button mat-mini-fab class=refuse-action (click)=refuse_action(); [disabled]="is_finish_last_action">انصراف</button>
 

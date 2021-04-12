@@ -24,6 +24,8 @@ import { DetailActionComponent } from '../detail-action/detail-action.component'
 })
 export class ActionComponent implements OnInit {
 
+
+
   constructor(private action_service: ActionService,
     private contract_service: ContractService,
     private task_category_service: TaskCategoryService,
@@ -31,16 +33,18 @@ export class ActionComponent implements OnInit {
     private token_service: TokenService,
     private general_func: GeneralFunc,
     private bottom_sheet: MatBottomSheet) {
-  }
-  model_action = new Action()
 
+  }
+
+  model_action = new Action()
+  is_finish_last_action: boolean ;
   res_contracts: Contract[];
   res_task_categories: TaskCategory[];
   res_tasks: Task[];
   res_last_action_personel: Action;
 
 
-  is_finish_last_action: boolean = false;
+
   visible_progress: boolean;
 
   id_personel: number = this.token_service.getUserPayload().IDPersonel;
@@ -258,10 +262,9 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.get_contracts_in_line();
     this.get_last_action_by_personel(this.id_personel)
+    this.get_contracts_in_line();
     this.get_task_category_by_industry(this.id_industry);
-    // this.get_all_actions_by_personel(this.id_personel);
     this.get_last_finished_action_by_personel(this.id_personel)
   }
 

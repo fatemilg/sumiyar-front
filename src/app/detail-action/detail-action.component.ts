@@ -4,6 +4,7 @@ import { ActionService } from '../services/action_service';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 import { XResult } from '../models/Xresult';
 import { Action } from '../models/Action';
+import { VM_Action_Detail } from '../vm-models/vm-action-detail';
 
 @Component({
   selector: 'app-detail-action',
@@ -14,7 +15,7 @@ export class DetailActionComponent implements OnInit {
 
   visible_progress: boolean;
   id_action = this.pass_data.IDAction;
-  model_detail_action = new Action()
+  model_detail_action = new VM_Action_Detail()
 
   constructor(
     private action_service: ActionService,
