@@ -1,5 +1,7 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
-</mat-spinner>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
 
 <button mat-icon-button class="btn-main-menu-header" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
   <mat-icon class="mat-icon-header-menu">menu</mat-icon>
