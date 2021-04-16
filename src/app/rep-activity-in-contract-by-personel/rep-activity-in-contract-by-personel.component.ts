@@ -28,11 +28,11 @@ noData(Highcharts);
 
 
 @Component({
-  selector: 'app-activity-in-contract-by-personel',
-  templateUrl: './activity-in-contract-by-personel.component.html',
-  styleUrls: ['./activity-in-contract-by-personel.component.css']
+  selector: 'app-rep-activity-in-contract-by-personel',
+  templateUrl: './rep-activity-in-contract-by-personel.component.html',
+  styleUrls: ['./rep-activity-in-contract-by-personel.component.css']
 })
-export class ActivityInContractByPersonelComponent implements OnInit {
+export class RepActivityInContractByPersonelComponent implements OnInit {
 
   constructor(private contract_service: ContractService,
     private report_service: ReportService,
