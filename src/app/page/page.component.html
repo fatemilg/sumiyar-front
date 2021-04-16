@@ -8,16 +8,16 @@
 </button>
 <mat-menu #menu="matMenu">
 
-    <button mat-menu-item class="menu-item" routerLink="action">
+    <button mat-menu-item class="menu-item" routerLink="../action">
     <span>ثبت فعالیت</span>
     <mat-icon class="mat-icon-menu-item">group_work</mat-icon>
   </button>
-    <button mat-menu-item class="menu-item" routerLink="change-password">
+    <button mat-menu-item class="menu-item" routerLink="../change-password">
     <span>تغییر رمز عبور</span>
     <mat-icon class="mat-icon-menu-item">security</mat-icon>
   </button>
 
-    <button *ngFor="let item of res_access_pages" mat-menu-item class="menu-item" routerLink={{item.Route}}>
+    <button *ngFor="let item of res_access_pages" mat-menu-item class="menu-item" routerLink="../{{item.Route}}">
     <span>{{item.Title}}</span>
     <mat-icon class="mat-icon-menu-item">{{item.Icon}}</mat-icon>
   </button>
