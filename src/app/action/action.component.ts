@@ -15,6 +15,10 @@ import { TaskCategory } from '../models/TaskCategory';
 import { TaskService } from '../services/task_service';
 import { MatBottomSheet, MatTableDataSource } from '@angular/material';
 import { DetailActionComponent } from '../detail-action/detail-action.component';
+import { SalonService } from '../services/salon_service';
+import { LineService } from '../services/line_service';
+import { Salon } from '../models/Salon';
+import { Line } from '../models/Line';
 
 
 @Component({
@@ -31,6 +35,8 @@ export class ActionComponent implements OnInit {
     private task_category_service: TaskCategoryService,
     private task_service: TaskService,
     private token_service: TokenService,
+    private salon_service: SalonService,
+    private line_service: LineService,
     private general_func: GeneralFunc,
     private bottom_sheet: MatBottomSheet) {
 
@@ -41,6 +47,8 @@ export class ActionComponent implements OnInit {
   res_contracts: Contract[];
   res_task_categories: TaskCategory[];
   res_tasks: Task[];
+  res_salons: Salon[];
+  res_lines: Line[];
   res_last_action_personel: Action;
 
 
@@ -95,11 +103,12 @@ export class ActionComponent implements OnInit {
           if (data.IsOK) {
             if (data.Value.length != 0) {
               this.model_action.IDTaskCategory = data.Value[0].IDTaskCategory
-
+              this.model_action.IDSalon = data.Value[0].IDSalon
               this.model_action.IDTask = data.Value[0].IDTask;
+              this.model_action.IDLine = data.Value[0].IDLine
 
               this.get_task_by_task_category(data.Value[0].IDTaskCategory);
-
+              this.get_line_by_salon(data.Value[0].IDSalon);
               this.contract_control.setValue({ item: data.Value[0].IDContract, GenerateContarctNumber: data.Value[0].GenerateContarctNumber });
             }
 
@@ -149,6 +158,37 @@ export class ActionComponent implements OnInit {
           this.visible_progress = false;
 
         })
+  }
+
+
+
+  get_salons_all() {
+    this.visible_progress = true;
+    return this.salon_service
+      .get_salons_all()
+      .subscribe((data: XResult) => {
+        if (data.IsOK) {
+          this.res_salons = data.Value;
+        }
+        else {
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+        }
+        this.visible_progress = false;
+      })
+  }
+  get_line_by_salon(id_salon) {
+    this.visible_progress = true;
+    return this.line_service
+      .get_line_by_salon(id_salon)
+      .subscribe((data: XResult) => {
+        if (data.IsOK) {
+          this.res_lines = data.Value;
+        }
+        else {
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+        }
+        this.visible_progress = false;
+      })
   }
 
 
@@ -220,6 +260,7 @@ export class ActionComponent implements OnInit {
       this.model_action.IDPersonel = this.id_personel;
       this.model_action.Count = this.model_action.Count.toString() != " " ? this.model_action.Count : 0;
       this.model_action.IDTask = this.model_action.IDTask != undefined ? this.model_action.IDTask : 0;
+      this.model_action.IDLine = this.model_action.IDLine != undefined ? this.model_action.IDLine : 0;
       return this.action_service
         .end_action(this.model_action)
         .subscribe((data: XResult) => {
@@ -261,15 +302,6 @@ export class ActionComponent implements OnInit {
     this.data_source.filter = filter_value;
   }
 
-  ngOnInit() {
-    this.get_last_action_by_personel(this.id_personel)
-    this.get_contracts_in_line();
-    this.get_task_category_by_industry(this.id_industry);
-    this.get_last_finished_action_by_personel(this.id_personel)
-  }
-
-
-
   load_detail_action(id_action): void {
     this.bottom_sheet.open(DetailActionComponent, {
       data: { IDAction: id_action }
@@ -277,5 +309,16 @@ export class ActionComponent implements OnInit {
 
     });
   }
+  ngOnInit() {
+    this.get_last_action_by_personel(this.id_personel)
+    this.get_contracts_in_line();
+    this.get_task_category_by_industry(this.id_industry);
+    this.get_last_finished_action_by_personel(this.id_personel)
+    this.get_salons_all();
+  }
+
+
+
+ 
 
 }
