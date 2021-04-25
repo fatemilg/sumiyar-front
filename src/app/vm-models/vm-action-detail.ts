@@ -9,5 +9,8 @@ export class VM_Action_Detail {
     EndDateAction:string;
     CalculateDoneWorkTime:number;
     CalculateExceptionSystemTime:number;
+    SalonTitle:string;
+    LineTitle:string;
+
 
 }

@@ -9,6 +9,7 @@ export class Action {
   EndDate: Date;
   Description: string;
   PassedTime: string;
-
+  IDSalon: number;
+  IDLine: number;
   Personels: Array<number>;
 }
