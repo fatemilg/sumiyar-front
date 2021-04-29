@@ -31,8 +31,12 @@ export class DetailActionComponent implements OnInit {
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
+         
             this.model_detail_action = data.Value[0];
+            this.visible_progress = false;
             this.cdr.detectChanges();
+      
+
           }
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);

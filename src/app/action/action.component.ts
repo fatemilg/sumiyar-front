@@ -81,6 +81,12 @@ export class ActionComponent implements OnInit {
               this.is_finish_last_action = false;
               this.model_action.PassedTime = data.Value.PassedTime;
 
+
+              this.get_contracts_in_line();
+              this.get_task_category_by_industry(this.id_industry);
+              this.get_salons_all();
+              this.get_last_finished_action_by_personel(this.id_personel)
+
             }
             else {
               this.is_finish_last_action = true;
@@ -266,7 +272,6 @@ export class ActionComponent implements OnInit {
         .subscribe((data: XResult) => {
           if (data.IsOK) {
             this.is_finish_last_action = true;
-            this.get_all_actions_by_personel(this.id_personel)
           }
           this.general_func.ShowMessage(data.Message, data.IsOK);
           this.visible_progress = false;
@@ -311,10 +316,7 @@ export class ActionComponent implements OnInit {
   }
   ngOnInit() {
     this.get_last_action_by_personel(this.id_personel)
-    this.get_contracts_in_line();
-    this.get_task_category_by_industry(this.id_industry);
-    this.get_last_finished_action_by_personel(this.id_personel)
-    this.get_salons_all();
+    
   }
 
 
