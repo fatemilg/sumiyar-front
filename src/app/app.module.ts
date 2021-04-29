@@ -27,6 +27,7 @@ import { CookieService } from 'ng2-cookies';
 import { DigitalClockComponent } from './digital-clock/digital-clock.component';
 import { DetailActionComponent } from './detail-action/detail-action.component';
 import { RepActivityInContractByPersonelComponent } from './rep-activity-in-contract-by-personel/rep-activity-in-contract-by-personel.component';
+import { ManageActionsComponent } from './manage-actions/manage-actions.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { RepActivityInContractByPersonelComponent } from './rep-activity-in-cont
     ChangePasswordComponent,
     RepActivityInContractByPersonelComponent,
     DigitalClockComponent,
-    DetailActionComponent
+    DetailActionComponent,
+    ManageActionsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
