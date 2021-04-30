@@ -53,16 +53,22 @@
     cursor: pointer;
 }
 
-.active-user {
-    color: blue;
-    cursor: pointer;
-}
-
-.deactive-user {
-    color: red;
-    cursor: pointer;
+.mat-autocomplete {
+    direction: ltr;
 }
 
 .filter {
     direction: rtl;
+}
+
+.WellStatus {
+    color: forestgreen;
+}
+
+.NormalStatus {
+    color: yellow;
+}
+
+.BadStatus {
+    color: red;
 }

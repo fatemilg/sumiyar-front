@@ -82,7 +82,7 @@ export class ActionComponent implements OnInit {
               this.model_action.PassedTime = data.Value.PassedTime;
 
 
-              this.get_contracts_in_line();
+              this.get_contracts_is_started_and_not_end();
               this.get_task_category_by_industry(this.id_industry);
               this.get_salons_all();
               this.get_last_finished_action_by_personel(this.id_personel)
@@ -143,7 +143,7 @@ export class ActionComponent implements OnInit {
   }
 
 
-  get_contracts_in_line() {
+  get_contracts_is_started_and_not_end() {
     this.visible_progress = true;
     return this.contract_service
       .get_contracts_is_started_and_not_end()

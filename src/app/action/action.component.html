@@ -77,9 +77,9 @@
                         </mat-form-field>
 
                         <!-- توضیحات -->
-                        <mat-form-field class="col-xs-12">
+                        <!-- <mat-form-field class="col-xs-12">
                             <textarea matInput [(ngModel)]="model_action.Description" name="Description" placeholder="توضیحات " maxlength="1000"></textarea>
-                        </mat-form-field>
+                        </mat-form-field> -->
 
                     </div>
                     <div class="row row-buttons-bottom" *ngIf="is_finish_last_action==false">
@@ -111,7 +111,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="StartDateAction">
-                                <th mat-header-cell *matHeaderCellDef> ثبت </th>
+                                <th mat-header-cell *matHeaderCellDef> تاریخ </th>
                                 <td mat-cell *matCellDef="let element"> {{element.StartDateAction}} </td>
                             </ng-container>
 
@@ -120,7 +120,7 @@
                                 <td mat-cell *matCellDef="let element">
                                     <span (click)="load_detail_action(element.IDAction)" class="detail-table">
                                         <mat-icon
-                                            [ngClass]="{'WellStatus': element.ExceptionSystemTimePerSecond > element.TimeDiffPerSecond ,'NormalStatus': element.TimeDiffPerSecond === element.ExceptionSystemTimePerSecond,'BadStatus':  element.ExceptionSystemTimePerSecond < element.TimeDiffPerSecond}">
+                                            [ngClass]="{'WellStatus': element.ExpectationSystemTimePerSecond > element.TimeDiffPerSecond ,'NormalStatus': element.TimeDiffPerSecond === element.ExpectationSystemTimePerSecond,'BadStatus':  element.ExpectationSystemTimePerSecond < element.TimeDiffPerSecond}">
                                             fiber_manual_record</mat-icon>
                                     </span>
                                 </td>
