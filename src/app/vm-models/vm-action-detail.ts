@@ -1,6 +1,6 @@
 export class VM_Action_Detail {
 
-    //recieved
+    IDAction: number;
     ContarctNumber :number;
     OrderNumber :number;
     Count:number;
@@ -8,7 +8,7 @@ export class VM_Action_Detail {
     StartDateAction : string;
     EndDateAction:string;
     CalculateDoneWorkTime:number;
-    CalculateExceptionSystemTime:number;
+    CalculateExpectationSystemTime:number;
     SalonTitle:string;
     LineTitle:string;
 

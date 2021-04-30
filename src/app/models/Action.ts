@@ -12,4 +12,6 @@ export class Action {
   IDSalon: number;
   IDLine: number;
   Personels: Array<number>;
+  CalculateExpectationSystemTime:string;
+  CalculateDoneWorkTime:string;
 }

@@ -4,7 +4,7 @@ import { EnvironmentUrlService } from './shared/environment-url.service';
 import { XResult } from '../models/Xresult';
 import { Action } from '../models/Action';
 import { Observable } from 'rxjs';
-import { VM_Contract_Action_Task } from '../vm-models/vm-contract-action-task';
+
 
 
 @Injectable({
@@ -17,6 +17,9 @@ export class ActionService {
 
   readonly base_url = this.envUrl.urlAddress + '/api/Action/';
 
+  get_action_by_id_action(id_action: string) {
+    return this.http.get<XResult>(this.base_url + 'get_action_by_id_action/' + id_action)
+  }
 
   get_last_action_by_personel(id_personel: number) {
     return this.http.get<XResult>(this.base_url + 'get_last_action_by_personel/' + id_personel)
@@ -39,6 +42,11 @@ export class ActionService {
   refuse_action(action: Action): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'refuse_action', action)
   }
+
+  update_action(action: Action): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'update_action', action)
+  }
+  
   get_detail_action(id_action: number) {
     return this.http.get<XResult>(this.base_url + 'get_detail_action/' + id_action)
   }
