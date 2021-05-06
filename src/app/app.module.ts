@@ -28,6 +28,7 @@ import { DigitalClockComponent } from './digital-clock/digital-clock.component';
 import { DetailActionComponent } from './detail-action/detail-action.component';
 import { RepActivityInContractByPersonelComponent } from './rep-activity-in-contract-by-personel/rep-activity-in-contract-by-personel.component';
 import { ManageActionsComponent } from './manage-actions/manage-actions.component';
+import { AddContractsComponent } from './add-contracts/add-contracts.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ManageActionsComponent } from './manage-actions/manage-actions.componen
     RepActivityInContractByPersonelComponent,
     DigitalClockComponent,
     DetailActionComponent,
-    ManageActionsComponent
+    ManageActionsComponent,
+    AddContractsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

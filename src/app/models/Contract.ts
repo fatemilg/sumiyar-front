@@ -1,9 +1,10 @@
 export class Contract {
   IDContract: number;
+  IDIndustry: number;
   IDDefine: number;
   IDOrderComplete: string;
   IDDefineDetailProductLab: string;
-  ContarctNumber: number;
+  ContractNumber: number;
   OrderNumber: number;
   ProductName: string;
   Count: number;
@@ -15,6 +16,10 @@ export class Contract {
   IDSupervisor:number;
   SupervisorFullName:string;
   Description: string;
-  GenerateContarctNumber: string
+  GenerateContractNumber: string;
+
+  PartNumber:string;
+  ProductCode:string
+
 
 }

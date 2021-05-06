@@ -19,7 +19,7 @@ export class ContractsComponent implements OnInit {
   ) { }
 
   //table-config
-  displayed_columns: string[] = [ 'ContarctNumber', 'OrderNumber', 'Count', 'Meter','Details'];
+  displayed_columns: string[] = [ 'ContractNumber', 'OrderNumber', 'Count', 'Meter','Details'];
   data_source: MatTableDataSource<Contract>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
