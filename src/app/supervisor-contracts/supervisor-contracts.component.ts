@@ -23,7 +23,7 @@ export class SupervisorContractsComponent implements OnInit {
 
 
   //table-config
-  displayed_columns: string[] = ['ContarctNumber', 'OrderNumber', 'Count', 'Meter', 'StartContract', 'EndContract'];
+  displayed_columns: string[] = ['ContractNumber', 'OrderNumber', 'Count', 'Meter', 'StartContract', 'EndContract'];
   data_source: MatTableDataSource<Contract>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;

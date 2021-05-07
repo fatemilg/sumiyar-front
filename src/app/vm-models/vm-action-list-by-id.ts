@@ -14,7 +14,7 @@ export class VM_Action_List_By_Id {
     SalonTitle:string;
     LineTitle:string;
     PersonTitle:string;
-    GenerateContarctNumber:string;
+    GenerateContractNumber:string;
     CalculateExpectationSystemTime:string;
     CalculateDoneWorkTime:string;
     ExpectationSystemTimePerSecond:string;

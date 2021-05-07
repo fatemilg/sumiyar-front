@@ -1,7 +1,7 @@
 export class VM_Action_Detail {
 
     IDAction: number;
-    ContarctNumber :number;
+    ContractNumber :number;
     OrderNumber :number;
     Count:number;
     TaskTitle : string;

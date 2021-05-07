@@ -95,11 +95,11 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   }
 
   display_selected_contract_item(contract: Contract): string {
-    return contract && contract.GenerateContarctNumber ? contract.GenerateContarctNumber : '';
+    return contract && contract.GenerateContractNumber ? contract.GenerateContractNumber : '';
   }
 
   private filter_contracts(value: string): Contract[] {
-    return this.res_contracts.filter(x => x.GenerateContarctNumber.toLowerCase().includes(value));
+    return this.res_contracts.filter(x => x.GenerateContractNumber.toLowerCase().includes(value));
   }
 
 

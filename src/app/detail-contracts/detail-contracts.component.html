@@ -6,11 +6,15 @@
 <mat-nav-list>
     <div class="row list-item-fa">
         <span mat-line>شماره قرارداد: </span>
-        <span mat-line>{{model_detail_contract.ContarctNumber}}</span>
+        <span mat-line>{{model_detail_contract.ContractNumber}}</span>
     </div>
     <div class="row list-item-fa">
         <span mat-line>شماره سفارش: </span>
         <span mat-line>{{model_detail_contract.OrderNumber}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>کد کالا: </span>
+        <span mat-line>{{model_detail_contract.ProductCode}}</span>
     </div>
     <div class="row list-item-fa">
         <span mat-line>تعداد : </span>
@@ -21,7 +25,7 @@
         <span mat-line>{{model_detail_contract.Meter}}</span>
     </div>
     <div class="row list-item-fa">
-        <span mat-line>تاریخ صدور حواله: </span>
+        <span mat-line>تاریخ  سفارش: </span>
         <span mat-line class="date-time"> {{model_detail_contract.OrderCompleteDate}}</span>
     </div>
     <div class="row list-item-fa">

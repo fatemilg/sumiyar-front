@@ -64,7 +64,7 @@ export class ActionComponent implements OnInit {
 
 
   //table-config
-  displayed_columns: string[] = ['ContarctNumber', 'Count', 'StartDateAction', 'Status'];  // 'OrderNumber', ,'CalculateDoneWorkTime', 'CalculateExceptionSystemTime',
+  displayed_columns: string[] = ['ContractNumber', 'Count', 'StartDateAction', 'Status'];  // 'OrderNumber', ,'CalculateDoneWorkTime', 'CalculateExceptionSystemTime',
   data_source: MatTableDataSource<Action>;
 
   get_last_action_by_personel(id_personel) {
@@ -115,7 +115,7 @@ export class ActionComponent implements OnInit {
 
               this.get_task_by_task_category(data.Value[0].IDTaskCategory);
               this.get_line_by_salon(data.Value[0].IDSalon);
-              this.contract_control.setValue({ item: data.Value[0].IDContract, GenerateContarctNumber: data.Value[0].GenerateContarctNumber });
+              this.contract_control.setValue({ item: data.Value[0].IDContract, GenerateContractNumber: data.Value[0].GenerateContractNumber });
             }
 
           }
@@ -229,11 +229,11 @@ export class ActionComponent implements OnInit {
   }
 
   display_selected_contract_item(contract: Contract): string {
-    return contract && contract.GenerateContarctNumber ? contract.GenerateContarctNumber : '';
+    return contract && contract.GenerateContractNumber ? contract.GenerateContractNumber : '';
   }
 
   private filter_contracts(value: string): Contract[] {
-    return this.res_contracts.filter(x => x.GenerateContarctNumber.toLowerCase().includes(value));
+    return this.res_contracts.filter(x => x.GenerateContractNumber.toLowerCase().includes(value));
   }
 
   start_action() {
