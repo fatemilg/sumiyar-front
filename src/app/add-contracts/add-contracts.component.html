@@ -39,8 +39,8 @@
                     <input matInput placeholder="شماره سفارش " [(ngModel)]="model_contract.OrderNumber" name="OrderNumber" numbersOnly required>
                 </mat-form-field>
 
-                <mat-form-field class="col-lg-3 col-xs-12">
-                    <input matInput placeholder="نام کالا" [(ngModel)]="model_contract.ProductName" name="ProductCode" required>
+                <mat-form-field class="col-lg-3 col-xs-12" style="direction: ltr;">
+                    <input matInput placeholder="نام کالا" [(ngModel)]="model_contract.ProductName" name="ProductName" required>
                 </mat-form-field>
 
                 <mat-form-field class="col-lg-3 col-xs-12">
@@ -60,7 +60,7 @@
                     <input matInput placeholder="متراژ " [(ngModel)]="model_contract.Meter" name="Meter">
                 </mat-form-field>
 
-                <mat-form-field class="col-xs-12">
+                <mat-form-field class="col-xs-12" style="text-align: left;">
                     <textarea matInput placeholder="توضیحات " [(ngModel)]="model_contract.Description" name="Description" maxlength="2000" required></textarea>
                 </mat-form-field>
 
