@@ -1,6 +1,7 @@
 export class Contract {
   IDContract: number;
   IDIndustry: number;
+  IDPersonel:Number;
   IDDefine: number;
   IDOrderComplete: string;
   IDDefineDetailProductLab: string;

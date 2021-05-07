@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort, MatDatepickerInputEvent } from '@angular/material';
+import * as jalaliMoment from 'jalali-moment';
 import { Contract } from '../models/Contract';
 import { Industry } from '../models/Industry';
 import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
 import { ContractService } from '../services/contract_service';
 import { IndustryService } from '../services/industry_service';
+import { TokenService } from '../services/token_service';
 
 @Component({
   selector: 'app-add-contracts',
@@ -13,10 +15,12 @@ import { IndustryService } from '../services/industry_service';
   styleUrls: ['./add-contracts.component.css']
 })
 export class AddContractsComponent implements OnInit {
-
+  OrderCompleteDateString: string;
   model_contract = new Contract();
   res_industries: Industry[];
   visible_progress: boolean;
+  id_personel: number = this.token_service.getUserPayload().IDPersonel;
+
 
   //table-config
   displayed_columns: string[] = ['Actions','ContractNumber', 'OrderNumber', 'Count', 'Meter' ];
@@ -28,10 +32,12 @@ export class AddContractsComponent implements OnInit {
   constructor(private contract_service: ContractService,
     private general_func: GeneralFunc,
     private industry_service: IndustryService,
+    private token_service: TokenService
   ) { }
 
 
-  add_update_contract(item) {
+  add_update_contract(item :Contract) {
+     item.IDPersonel=this.id_personel;
     this.visible_progress = true;
     return this.contract_service
       .add_update_contract(item)
@@ -49,7 +55,6 @@ export class AddContractsComponent implements OnInit {
     this.model_contract =new Contract ();
     document.getElementById("btn_add_update_contract").innerHTML="ثبت";
     this.model_contract.IDIndustry = this.res_industries[0].IDIndustry;
-    this.model_contract.OrderCompleteDate =  new Date();
   }
 
   get_contracts_all() {
@@ -82,6 +87,7 @@ export class AddContractsComponent implements OnInit {
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.model_contract = data.Value
+          this.model_contract.OrderCompleteDateString = data.Value.OrderCompleteDate
         }
         else{
           this.general_func.ShowMessage(data.Message, data.IsOK);
@@ -118,7 +124,14 @@ export class AddContractsComponent implements OnInit {
   ngOnInit() {
     this.get_industry_all();
     this.get_contracts_all();
-    this.clear_form_contract();
+  }
+
+
+  onChange(event: MatDatepickerInputEvent<jalaliMoment.Moment>) {
+    // this.OrderCompleteDateString = jalaliMoment(event.value).format("jYYYY/jMM/jDD");
+    // const date = jalaliMoment.from(event.value.toString(), "en").utc(true).toJSON();
+    // console.log(`date: ${date}`);
+    this.model_contract.OrderCompleteDateString = jalaliMoment.from(event.value.toString(), "en").utc(true).toJSON();
   }
 
 }

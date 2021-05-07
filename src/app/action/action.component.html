@@ -45,7 +45,7 @@
                             <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts" required>
                             <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
                                 <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined " *ngFor="let item of filtered_contract| async" [value]="item">
-                                    {{item.GenerateContarctNumber}}
+                                    {{item.GenerateContractNumber}}
                                 </mat-option>
                             </mat-autocomplete>
 
@@ -103,7 +103,7 @@
                             <ng-container matColumnDef="ContractNumber">
                                 <th mat-header-cell *matHeaderCellDef> قرارداد </th>
                                 <td mat-cell *matCellDef="let element">
-                                    {{element.ContarctNumber}}-{{element.OrderNumber}} </td>
+                                    {{element.ContractNumber}}-{{element.OrderNumber}} </td>
                             </ng-container>
                             <ng-container matColumnDef="Count">
                                 <th mat-header-cell *matHeaderCellDef> تعداد </th>
