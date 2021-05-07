@@ -48,7 +48,8 @@ export class AddContractsComponent implements OnInit {
   clear_form_contract() {
     this.model_contract =new Contract ();
     document.getElementById("btn_add_update_contract").innerHTML="ثبت";
-
+    this.model_contract.IDIndustry = this.res_industries[0].IDIndustry;
+    this.model_contract.OrderCompleteDate =  new Date();
   }
 
   get_contracts_all() {
@@ -117,6 +118,7 @@ export class AddContractsComponent implements OnInit {
   ngOnInit() {
     this.get_industry_all();
     this.get_contracts_all();
+    this.clear_form_contract();
   }
 
 }

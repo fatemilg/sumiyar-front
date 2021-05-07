@@ -24,7 +24,11 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
+                <mat-form-field class="col-lg-3 col-xs-12">
+                    <input matInput [matDatepicker]="picker6" placeholder="تاریخ" [(value)]="model_contract.OrderCompleteDateString" (focus)="picker6.open()" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                    <mat-datepicker #picker6></mat-datepicker>
+                </mat-form-field>
                 <mat-form-field class="col-lg-3 col-xs-12">
                     <input matInput placeholder="شماره قرارداد" [(ngModel)]="model_contract.ContractNumber" name="ContractNumber" numbersOnly required>
                 </mat-form-field>

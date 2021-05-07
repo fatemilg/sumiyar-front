@@ -10,6 +10,7 @@ export class Contract {
   Count: number;
   Meter: number;
   OrderCompleteDate: Date;
+  OrderCompleteDateString: string;
   StartDate: Date;
   EndDate: Date;
   AssignSupervisorDate: Date;
