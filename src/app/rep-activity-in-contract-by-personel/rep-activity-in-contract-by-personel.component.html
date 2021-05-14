@@ -13,8 +13,24 @@
     <mat-card-content>
         <form class="container" #activity_in_contract_form="ngForm">
             <div class="row set-border filters">
-                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts" required>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input matInput [matDatepicker]="picker6" placeholder="تاریخ" (focus)="picker6.open()" (dateChange)="change_action_start_date($event)" [(value)]="action_start_date_selected">
+                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                    <mat-datepicker #picker6></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12" dir="rtl">
+                    <mat-label>سالن - خط</mat-label>
+                    <mat-select [(value)]="line_selected">
+                        <mat-option *ngFor="let item of res_salon_line" [value]="item.IDLine" (click)="select_line(item.IDLine)">
+                            <span>{{item.GenerateSalonLine}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts">
                     <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
                         <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
                             {{item.GenerateContractNumber}}
@@ -23,7 +39,7 @@
 
                 </mat-form-field>
 
-                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12" dir="rtl">
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12" dir="rtl">
                     <mat-label>پرسنل</mat-label>
                     <mat-select [disabled]="disable_personel_list" [(value)]="personels_selected">
                         <mat-option *ngFor="let item of res_personels" [value]="item.IDPersonel" (click)="select_personel()">

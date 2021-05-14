@@ -15,6 +15,11 @@ import { VM_Contract_Action_Task } from 'src/app/vm-models/vm-contract-action-ta
 import { ReportService } from 'src/app/services/report_service';
 import { SupervisorContractService } from 'src/app/services/supervisor_contract_service';
 import { SupervisorContract } from 'src/app/models/SupervisorContract';
+import { MatDatepickerInputEvent } from '@angular/material';
+import * as jalaliMoment from 'jalali-moment';
+import { VM_Salon_Line } from '../vm-models/vm-salon-line';
+import { VM_Action_Line } from '../vm-models/vm_action_line';
+import { VM_Action_Line_Contract } from '../vm-models/vm_action_line_contract';
 
 declare var require: any;
 let Boost = require('node_modules/highcharts/modules/boost');
@@ -46,18 +51,25 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   visible_progress: boolean;
   res_contracts: Contract[];
   res_personels: Personel[];
+  res_salon_line: VM_Salon_Line[];
   disable_personel_list: boolean = true;
   model_action = new Action();
   options: any
   personels_selected: number;
   show_report: boolean = false;;
+  action_start_date_selected: string;
+  vm_action_line = new VM_Action_Line();
+  vm_action_line_contract = new VM_Action_Line_Contract();
+  line_selected :number;
 
-
-
-  get_personel_worked_in_contract(id_contract) {
+  get_personel_worked_by_contract_and_line_and_action_strat_date(id_contract,id_line,action_start_date) {
     this.visible_progress = true;
+    this.vm_action_line_contract.IDContract=id_contract;
+    this.vm_action_line_contract.IDLine=id_line;
+    this.vm_action_line_contract.ActionStartDateString=action_start_date;
+
     return this.action_service
-      .get_personles_worked_in_contract(id_contract)
+      .get_personel_worked_by_contract_and_line_and_action_strat_date(this.vm_action_line_contract)
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.res_personels = data.Value;
@@ -72,10 +84,13 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
 
 
 
-  get_contracts_just_is_started() {
+  get_contracts_used_in_action_by_start_date_and_line(action_start_date: string, id_line: number) {
     this.visible_progress = true;
-    return this.contract_service
-      .get_contracts_just_is_started()
+    this.vm_action_line.IDLine=id_line;
+    this.vm_action_line.ActionStartDateString=action_start_date;
+
+    return this.action_service
+      .get_contracts_used_in_action_by_start_date_and_line(this.vm_action_line)
       .subscribe(
         (data: XResult) => {
           if (data.IsOK) {
@@ -94,6 +109,30 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
         })
   }
 
+  get_salon_line_used_in_action_by_start_date(action_start_date: string) {
+    this.visible_progress = true;
+    return this.action_service
+      .get_salon_line_used_in_action_by_start_date(action_start_date)
+      .subscribe((data: XResult) => {
+        if (data.IsOK) {
+          this.res_salon_line = data.Value;
+        }
+        else {
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+        }
+        this.visible_progress = false;
+
+      })
+  }
+
+  select_line(id_line: number) {
+    this.line_selected=id_line;
+    this.res_personels=null;
+    this.contract_control.setValue('');
+    this.get_contracts_used_in_action_by_start_date_and_line(this.action_start_date_selected, id_line);
+  }
+
+
   display_selected_contract_item(contract: Contract): string {
     return contract && contract.GenerateContractNumber ? contract.GenerateContractNumber : '';
   }
@@ -104,9 +143,10 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
 
 
   auto_contracts_select_change(evt: any) {
+    this.res_personels=null;
     if (evt.source.selected) {
       this.disable_personel_list = false;
-      this.get_personel_worked_in_contract(evt.source.value.IDContract)
+      this.get_personel_worked_by_contract_and_line_and_action_strat_date(evt.source.value.IDContract,this.line_selected,this.action_start_date_selected)
       this.show_report = false;
     }
     else {
@@ -225,11 +265,17 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
 
   }
 
+  change_action_start_date(event: MatDatepickerInputEvent<jalaliMoment.Moment>) {
 
+    const action_start_date = jalaliMoment.from(event.value.toString(), "en").utc(true).toJSON();
+    this.action_start_date_selected = action_start_date;
+    this.line_selected=null;
+    this.res_personels=null;
+    this.contract_control.setValue('');
+    this.get_salon_line_used_in_action_by_start_date(action_start_date)
 
+  }
   ngOnInit() {
-    this.get_contracts_just_is_started();
-
 
   }
 
