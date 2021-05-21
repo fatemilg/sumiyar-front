@@ -15,4 +15,6 @@ export class VM_Contract_Action_Task {
 //send to C#
     IDContract :number;
     IDPersonel: number;
+    IDLine: number;
+    ActionStartDate:string
 }
