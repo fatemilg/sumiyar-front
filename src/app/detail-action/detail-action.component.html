@@ -1,10 +1,24 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
-</mat-spinner>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
 
 <mat-nav-list>
     <div class="row list-item-fa">
+        <span mat-line>شماره فعالیت: </span>
+        <span mat-line>{{model_detail_action.IDAction}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>شماره سالن: </span>
+        <span mat-line>{{model_detail_action.SalonTitle}}</span>
+    </div>
+    <div class="row list-item-fa">
+        <span mat-line>شماره خط: </span>
+        <span mat-line>{{model_detail_action.LineTitle}}</span>
+    </div>
+    <div class="row list-item-fa">
         <span mat-line>شماره قرارداد: </span>
-        <span mat-line>{{model_detail_action.ContarctNumber}}</span>
+        <span mat-line>{{model_detail_action.ContractNumber}}</span>
     </div>
     <div class="row list-item-fa">
         <span mat-line>شماره سفارش: </span>
@@ -35,7 +49,7 @@
 
     <div class="row list-item-fa">
         <span mat-line> انتظار سیستم : </span>
-        <span mat-line>{{model_detail_action.CalculateExceptionSystemTime}}</span>
+        <span mat-line>{{model_detail_action.CalculateExpectationSystemTime}}</span>
     </div>
 
 

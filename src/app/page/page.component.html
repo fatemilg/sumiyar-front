@@ -1,21 +1,23 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
-</mat-spinner>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
 
 <button mat-icon-button class="btn-main-menu-header" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
   <mat-icon class="mat-icon-header-menu">menu</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
 
-    <button mat-menu-item class="menu-item" routerLink="action">
+    <button mat-menu-item class="menu-item" routerLink="../action">
     <span>ثبت فعالیت</span>
     <mat-icon class="mat-icon-menu-item">group_work</mat-icon>
   </button>
-    <button mat-menu-item class="menu-item" routerLink="change-password">
+    <button mat-menu-item class="menu-item" routerLink="../change-password">
     <span>تغییر رمز عبور</span>
     <mat-icon class="mat-icon-menu-item">security</mat-icon>
   </button>
 
-    <button *ngFor="let item of res_access_pages" mat-menu-item class="menu-item" routerLink={{item.Route}}>
+    <button *ngFor="let item of res_access_pages" mat-menu-item class="menu-item" routerLink="../{{item.Route}}">
     <span>{{item.Title}}</span>
     <mat-icon class="mat-icon-menu-item">{{item.Icon}}</mat-icon>
   </button>

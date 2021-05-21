@@ -14,17 +14,12 @@ export class HeaderComponent implements OnInit {
 
   user_login: Claim;
 
-  check_is_login() {
-    if (this.token_service.is_authenticated()) {
-      this.user_login = this.token_service.getUserPayload();
-      return true;
-    }
-    else
-      return false;
-  }
+
 
   ngOnInit() {
-
+    if (this.token_service.is_authenticated()) {
+      this.user_login = this.token_service.getUserPayload();
+    }
   }
 
 }

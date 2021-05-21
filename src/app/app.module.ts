@@ -23,11 +23,12 @@ import { ActionComponent } from './action/action.component';
 import { TaskHistoryComponent } from './task-history/task-history.component';
 import { SupervisorContractsComponent } from './supervisor-contracts/supervisor-contracts.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { ActivityInContractByPersonelComponent } from './reports/activity-in-contract-by-personel/activity-in-contract-by-personel.component'
-import { Report2Component } from './reports/report2/report2.component';
 import { CookieService } from 'ng2-cookies';
 import { DigitalClockComponent } from './digital-clock/digital-clock.component';
 import { DetailActionComponent } from './detail-action/detail-action.component';
+import { RepActivityInContractByPersonelComponent } from './rep-activity-in-contract-by-personel/rep-activity-in-contract-by-personel.component';
+import { ManageActionsComponent } from './manage-actions/manage-actions.component';
+import { AddContractsComponent } from './add-contracts/add-contracts.component';
 
 @NgModule({
   declarations: [
@@ -47,10 +48,11 @@ import { DetailActionComponent } from './detail-action/detail-action.component';
     TaskHistoryComponent,
     SupervisorContractsComponent,
     ChangePasswordComponent,
-    ActivityInContractByPersonelComponent,
-    Report2Component,
+    RepActivityInContractByPersonelComponent,
     DigitalClockComponent,
-    DetailActionComponent
+    DetailActionComponent,
+    ManageActionsComponent,
+    AddContractsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

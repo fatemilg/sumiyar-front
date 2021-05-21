@@ -1,5 +1,8 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
-</mat-spinner>
+<app-header></app-header>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
 
 
 <mat-card>
@@ -12,20 +15,43 @@
                         <button class="start-action" mat-fab color="primary" (click)=start_action();>شروع</button>
                     </div>
                     <div class="row" *ngIf="is_finish_last_action==false">
+                        <!-- مدت زمان سپری شده -->
                         <mat-form-field class="col-xs-12">
                             <mat-label> مدت زمان سپری شده : </mat-label>
                             <input matInput [(ngModel)]="model_action.PassedTime" name="PassedTime" disabled style="color:black">
                         </mat-form-field>
+                        <!-- سالن -->
+                        <mat-form-field class="col-xs-12">
+                            <mat-label>سالن</mat-label>
+                            <mat-select name="IDSalon" [(value)]="model_action.IDSalon">
+                                <mat-option *ngFor="let item of res_salons" [value]="item.IDSalon" (click)=get_line_by_salon(item.IDSalon)>
+                                    <span>{{item.Title}}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
+                        <!-- خط -->
+                        <mat-form-field class="col-xs-12">
+                            <mat-label>خط</mat-label>
+                            <mat-select [(value)]="model_action.IDLine" name="IDLine">
+                                <mat-option *ngFor="let item of res_lines" [value]="item.IDLine">
+                                    {{item.Title}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <!-- قرارداد -->
                         <mat-form-field class="col-xs-12">
                             <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts" required>
                             <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
                                 <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined " *ngFor="let item of filtered_contract| async" [value]="item">
-                                    {{item.GenerateContarctNumber}}
+                                    {{item.GenerateContractNumber}}
                                 </mat-option>
                             </mat-autocomplete>
 
                         </mat-form-field>
+
+                        <!-- دسته بندی -->
                         <mat-form-field class="col-xs-12">
                             <mat-label>دسته بندی </mat-label>
                             <mat-select name="IDTaskCategory" [(value)]="model_action.IDTaskCategory">
@@ -35,6 +61,7 @@
                             </mat-select>
                         </mat-form-field>
 
+                        <!-- وظیفه -->
                         <mat-form-field class="col-xs-12">
                             <mat-label>وظیفه</mat-label>
                             <mat-select [(value)]="model_action.IDTask" name="IDTask">
@@ -44,14 +71,15 @@
                             </mat-select>
                         </mat-form-field>
 
-
+                        <!-- تعداد -->
                         <mat-form-field class="col-xs-12">
                             <input matInput [(ngModel)]="model_action.Count" name="Count" placeholder="تعداد " required maxlength="10" numbersOnly>
                         </mat-form-field>
 
-                        <mat-form-field class="col-xs-12">
+                        <!-- توضیحات -->
+                        <!-- <mat-form-field class="col-xs-12">
                             <textarea matInput [(ngModel)]="model_action.Description" name="Description" placeholder="توضیحات " maxlength="1000"></textarea>
-                        </mat-form-field>
+                        </mat-form-field> -->
 
                     </div>
                     <div class="row row-buttons-bottom" *ngIf="is_finish_last_action==false">
@@ -72,10 +100,10 @@
                     <div class="table-container mat-elevation-z8">
                         <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl" matSort>
 
-                            <ng-container matColumnDef="ContarctNumber">
+                            <ng-container matColumnDef="ContractNumber">
                                 <th mat-header-cell *matHeaderCellDef> قرارداد </th>
                                 <td mat-cell *matCellDef="let element">
-                                    {{element.ContarctNumber}}-{{element.OrderNumber}} </td>
+                                    {{element.ContractNumber}}-{{element.OrderNumber}} </td>
                             </ng-container>
                             <ng-container matColumnDef="Count">
                                 <th mat-header-cell *matHeaderCellDef> تعداد </th>
@@ -83,7 +111,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="StartDateAction">
-                                <th mat-header-cell *matHeaderCellDef> ثبت </th>
+                                <th mat-header-cell *matHeaderCellDef> تاریخ </th>
                                 <td mat-cell *matCellDef="let element"> {{element.StartDateAction}} </td>
                             </ng-container>
 
@@ -91,10 +119,10 @@
                                 <th mat-header-cell *matHeaderCellDef> وضعیت </th>
                                 <td mat-cell *matCellDef="let element">
                                     <span (click)="load_detail_action(element.IDAction)" class="detail-table">
-                                            <mat-icon
-                                                [ngClass]="{'WellStatus': element.ExceptionSystemTimePerSecond > element.TimeDiffPerSecond ,'NormalStatus': element.TimeDiffPerSecond === element.ExceptionSystemTimePerSecond,'BadStatus':  element.ExceptionSystemTimePerSecond < element.TimeDiffPerSecond}">
-                                                fiber_manual_record</mat-icon>
-                                        </span>
+                                        <mat-icon
+                                            [ngClass]="{'WellStatus': element.ExpectationSystemTimePerSecond > element.TimeDiffPerSecond ,'NormalStatus': element.TimeDiffPerSecond === element.ExpectationSystemTimePerSecond,'BadStatus':  element.ExpectationSystemTimePerSecond < element.TimeDiffPerSecond}">
+                                            fiber_manual_record</mat-icon>
+                                    </span>
                                 </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayed_columns; sticky: true"></tr>

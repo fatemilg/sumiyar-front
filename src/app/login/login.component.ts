@@ -4,7 +4,6 @@ import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
 import { TokenService } from '../services/token_service';
 import { Router } from '@angular/router';
-
 import { CookieService } from 'ng2-cookies';
 import { LogUserService } from '../services/log_user_service';
 

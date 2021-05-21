@@ -1,5 +1,8 @@
-<mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress"></mat-spinner>
-
+<app-header></app-header>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
 <mat-toolbar>
     <span>لیست قرارداد ها</span>
 </mat-toolbar>
@@ -16,9 +19,9 @@
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl" matSort>
 
-                    <ng-container matColumnDef="ContarctNumber">
+                    <ng-container matColumnDef="ContractNumber">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> قرارداد </th>
-                        <td mat-cell *matCellDef="let element"> {{element.ContarctNumber}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.ContractNumber}} </td>
                     </ng-container>
                     <ng-container matColumnDef="OrderNumber">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> سفارش </th>

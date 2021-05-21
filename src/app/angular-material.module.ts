@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './services/shared/material.persian-date.adapter';
 
 import {
   MatButtonModule,
@@ -30,9 +31,11 @@ import {
   MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatSlideToggleModule,
-  MatTabsModule
+  MatTabsModule,
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MAT_DATE_FORMATS
 } from '@angular/material';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -98,6 +101,8 @@ import {
   ],
   providers: [
     MatDatepickerModule,
+    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ]
 })
 
