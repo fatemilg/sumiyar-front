@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div class="dark-overlay" *ngIf="visible_progress">
+    <mat-spinner mode="indeterminate" color="primary" [diameter]="50" class="progress_bar" *ngIf="visible_progress">
+    </mat-spinner>
+</div>
+
+
+<mat-toolbar>
+    <span>
+        گزارش عملکرد
+    </span>
+</mat-toolbar>
+<mat-card>
+    <mat-card-content>
+        <form class="container" #activity_in_contract_form="ngForm">
+            <div class="row set-border filters">
+
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <mat-label> صنعت</mat-label>
+                    <mat-select name="IDIndustry">
+                        <mat-option *ngFor="let item of res_industries" [value]="item.IDIndustry" (click)=load_dependencies_by_industry(item.IDIndustry)>
+                            <span>{{item.Title}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input #auto_task_Input type="text" aria-label="task" placeholder="عنوان وظیفه" matInput [formControl]="task_control" [matAutocomplete]="auto_tasks">
+                    <mat-autocomplete #auto_tasks="matAutocomplete" [displayWith]="display_selected_task_item">
+                        <mat-option (onSelectionChange)="auto_task_Input.value !=undefined && auto_tasks_select_change($event)" *ngFor="let item of filtered_task| async" [value]="item">
+                            {{item.Title}}
+                        </mat-option>
+                    </mat-autocomplete>
+
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts">
+                    <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
+                        <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
+                            {{item.GenerateContractNumber}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input matInput [matDatepicker]="picker_from" placeholder="تاریخ از" (focus)="picker_from.open()" (dateChange)="change_from_action_start_date_($event)" [(value)]="action_from_start_date_selected">
+                    <mat-datepicker-toggle matSuffix [for]="picker_from"></mat-datepicker-toggle>
+                    <mat-datepicker #picker_from></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <input matInput [matDatepicker]="picker_to" placeholder="تاریخ تا" (focus)="picker_to.open()" (dateChange)="change_to_action_start_date($event)" [(value)]="action_to_start_date_selected">
+                    <mat-datepicker-toggle matSuffix [for]="picker_to"></mat-datepicker-toggle>
+                    <mat-datepicker #picker_to></mat-datepicker>
+                </mat-form-field>
+                <!-- 
+            <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12" dir="rtl">
+                <mat-label>سالن - خط</mat-label>
+                <mat-select [(value)]="line_selected">
+                    <mat-option *ngFor="let item of res_salon_line" [value]="item.IDLine" (click)="select_line(item.IDLine)">
+                        <span>{{item.GenerateSalonLine}}</span>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+
+            <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <input #auto_contract_Input type="text" aria-label="Contract" placeholder="پرسنل" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts">
+                <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
+                    <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
+                        {{item.GenerateContractNumber}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field> -->
+
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

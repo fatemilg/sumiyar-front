@@ -13,8 +13,6 @@ import { ActionService } from 'src/app/services/action_service';
 import { Action } from 'src/app/models/Action';
 import { VM_Contract_Action_Task } from 'src/app/vm-models/vm-contract-action-task';
 import { ReportService } from 'src/app/services/report_service';
-import { SupervisorContractService } from 'src/app/services/supervisor_contract_service';
-import { SupervisorContract } from 'src/app/models/SupervisorContract';
 import { MatDatepickerInputEvent, MatTableDataSource } from '@angular/material';
 import * as jalaliMoment from 'jalali-moment';
 import { VM_Salon_Line } from '../vm-models/vm-salon-line';
@@ -43,8 +41,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   constructor(private contract_service: ContractService,
     private report_service: ReportService,
     private general_func: GeneralFunc,
-    private action_service: ActionService,
-    private supervisor_contract_service: SupervisorContractService) { }
+    private action_service: ActionService) { }
 
 
   contract_control = new FormControl();
