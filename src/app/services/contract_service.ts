@@ -29,6 +29,11 @@ export class ContractService {
   get_detail_contract(id_contract: number) {
     return this.http.get<XResult>(this.base_url + 'get_detail_contract/' + id_contract)
   }
+
+  get_contract_by_id_industry(id_industry: number) {
+    return this.http.get<XResult>(this.base_url + 'get_contract_by_id_industry/' + id_industry)
+  }
+
   edit_contract(id_contract: number) {
     return this.http.get<XResult>(this.base_url + 'edit_contract/' + id_contract)
   }

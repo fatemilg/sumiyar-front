@@ -19,6 +19,9 @@ export class SalonService {
     return this.http.get<XResult>(this.base_url + 'get_salons_all')
   }
   
+  get_salon_line_all() {
+    return this.http.get<XResult>(this.base_url + 'get_salon_line_all')
+  }
 
 
 

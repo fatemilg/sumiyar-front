@@ -22,6 +22,12 @@ export class ReportService {
   get_activity_in_contract_by_personel(vm: VM_Contract_Action_Task): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'get_activity_in_contract_by_personel', vm)
   }
+  get_accumulative_activity_in_contract_by_personel(vm: VM_Contract_Action_Task): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'get_accumulative_activity_in_contract_by_personel', vm)
+  }
+  get_general_report_activity(vm: VM_Contract_Action_Task): Observable<XResult> {
+    return this.http.post<XResult>(this.base_url + 'get_general_report_activity', vm)
+  }
 
 }
 

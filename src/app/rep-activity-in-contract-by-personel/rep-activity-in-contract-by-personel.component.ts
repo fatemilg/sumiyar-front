@@ -13,13 +13,12 @@ import { ActionService } from 'src/app/services/action_service';
 import { Action } from 'src/app/models/Action';
 import { VM_Contract_Action_Task } from 'src/app/vm-models/vm-contract-action-task';
 import { ReportService } from 'src/app/services/report_service';
-import { SupervisorContractService } from 'src/app/services/supervisor_contract_service';
-import { SupervisorContract } from 'src/app/models/SupervisorContract';
-import { MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent, MatTableDataSource } from '@angular/material';
 import * as jalaliMoment from 'jalali-moment';
 import { VM_Salon_Line } from '../vm-models/vm-salon-line';
 import { VM_Action_Line } from '../vm-models/vm_action_line';
 import { VM_Action_Line_Contract } from '../vm-models/vm_action_line_contract';
+import { VM_Action_Detail } from '../vm-models/vm-action-detail';
 
 declare var require: any;
 let Boost = require('node_modules/highcharts/modules/boost');
@@ -42,8 +41,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   constructor(private contract_service: ContractService,
     private report_service: ReportService,
     private general_func: GeneralFunc,
-    private action_service: ActionService,
-    private supervisor_contract_service: SupervisorContractService) { }
+    private action_service: ActionService) { }
 
 
   contract_control = new FormControl();
@@ -62,11 +60,15 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   vm_action_line_contract = new VM_Action_Line_Contract();
   line_selected :number;
 
+    //table-config
+    displayed_columns: string[] = ['TaskTitle', 'Count', 'CalculateDoneWorkTime','CalculateExpectationSystemTime','Status'];
+    data_source: MatTableDataSource<VM_Action_Detail>;
+
   get_personel_worked_by_contract_and_line_and_action_strat_date(id_contract,id_line,action_start_date) {
     this.visible_progress = true;
     this.vm_action_line_contract.IDContract=id_contract;
     this.vm_action_line_contract.IDLine=id_line;
-    this.vm_action_line_contract.ActionStartDateString=action_start_date;
+    this.vm_action_line_contract.FromActionStartDateString=action_start_date;
 
     return this.action_service
       .get_personel_worked_by_contract_and_line_and_action_strat_date(this.vm_action_line_contract)
@@ -83,11 +85,10 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   }
 
 
-
   get_contracts_used_in_action_by_start_date_and_line(action_start_date: string, id_line: number) {
     this.visible_progress = true;
     this.vm_action_line.IDLine=id_line;
-    this.vm_action_line.ActionStartDateString=action_start_date;
+    this.vm_action_line.FromActionStartDateString=action_start_date;
 
     return this.action_service
       .get_contracts_used_in_action_by_start_date_and_line(this.vm_action_line)
@@ -164,15 +165,33 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
     let model = new VM_Contract_Action_Task()
     model.IDContract = this.contract_control.value.IDContract;
     model.IDPersonel = this.personels_selected;
+    model.IDLine = this.line_selected;
+    model.FromActionStartDate = this.action_start_date_selected;
 
     return this.report_service
       .get_activity_in_contract_by_personel(model)
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.load_report(data.Value);
+          this. get_accumulative_activity_in_contract_by_personel(model)
         }
         else {
           this.show_report = false;
+          this.general_func.ShowMessage(data.Message, data.IsOK);
+        }
+        this.visible_progress = false;
+      });
+  }
+
+  get_accumulative_activity_in_contract_by_personel(model:VM_Contract_Action_Task){
+    this.visible_progress = true;
+    return this.report_service
+      .get_accumulative_activity_in_contract_by_personel(model)
+      .subscribe((data: XResult) => {
+        if (data.IsOK) {
+          this.data_source = new MatTableDataSource(data.Value);
+        }
+        else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
         }
         this.visible_progress = false;
