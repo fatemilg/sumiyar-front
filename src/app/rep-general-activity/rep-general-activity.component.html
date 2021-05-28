@@ -16,7 +16,7 @@
             <div class="row set-border filters">
 
 
-                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <mat-label> صنعت</mat-label>
                     <mat-select name="IDIndustry">
                         <mat-option *ngFor="let item of res_industries" [value]="item.IDIndustry" (click)=load_dependencies_by_industry(item.IDIndustry)>
@@ -25,59 +25,104 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <input #auto_task_Input type="text" aria-label="task" placeholder="عنوان وظیفه" matInput [formControl]="task_control" [matAutocomplete]="auto_tasks">
                     <mat-autocomplete #auto_tasks="matAutocomplete" [displayWith]="display_selected_task_item">
-                        <mat-option (onSelectionChange)="auto_task_Input.value !=undefined && auto_tasks_select_change($event)" *ngFor="let item of filtered_task| async" [value]="item">
+                        <mat-option *ngFor="let item of filtered_task| async" [value]="item">
                             {{item.Title}}
                         </mat-option>
                     </mat-autocomplete>
 
                 </mat-form-field>
 
-                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <input #auto_contract_Input type="text" aria-label="Contract" placeholder="شماره سفارش" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts">
-                    <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
-                        <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
-                            {{item.GenerateContractNumber}}
+
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12" dir="rtl">
+                    <mat-label>سالن - خط</mat-label>
+                    <mat-select [(value)]="line_selected">
+                        <mat-option *ngFor="let item of res_salon_line" [value]="item.IDLine" (click)="select_line(item.IDLine)">
+                            <span>{{item.Title}}</span>
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input #auto_person_Input type="text" aria-label="Person" placeholder="شخص" matInput [formControl]="person_control" [matAutocomplete]="auto_persons">
+                    <mat-autocomplete #auto_persons="matAutocomplete" [displayWith]="display_selected_person_item">
+                        <mat-option *ngFor="let item of filtered_person| async" [value]="item">
+                            {{item.FullNameByRole}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
 
 
-                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <input matInput [matDatepicker]="picker_from" placeholder="تاریخ از" (focus)="picker_from.open()" (dateChange)="change_from_action_start_date_($event)" [(value)]="action_from_start_date_selected">
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input matInput [matDatepicker]="picker_from" placeholder="تاریخ از" (focus)="picker_from.open()" (dateChange)="change_from_action_start_date($event)" [(value)]="from_action_start_date_selected">
                     <mat-datepicker-toggle matSuffix [for]="picker_from"></mat-datepicker-toggle>
                     <mat-datepicker #picker_from></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <input matInput [matDatepicker]="picker_to" placeholder="تاریخ تا" (focus)="picker_to.open()" (dateChange)="change_to_action_start_date($event)" [(value)]="action_to_start_date_selected">
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input matInput [matDatepicker]="picker_to" placeholder="تاریخ تا" (focus)="picker_to.open()" (dateChange)="change_to_action_start_date($event)" [(value)]="to_action_start_date_selected">
                     <mat-datepicker-toggle matSuffix [for]="picker_to"></mat-datepicker-toggle>
                     <mat-datepicker #picker_to></mat-datepicker>
                 </mat-form-field>
-                <!-- 
-            <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12" dir="rtl">
-                <mat-label>سالن - خط</mat-label>
-                <mat-select [(value)]="line_selected">
-                    <mat-option *ngFor="let item of res_salon_line" [value]="item.IDLine" (click)="select_line(item.IDLine)">
-                        <span>{{item.GenerateSalonLine}}</span>
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
 
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button mat-raised-button id="btn_search" color="primary" (click)=search()> جستو جو</button>
+                </div>
+            </div>
 
+            <div class="table-container mat-elevation-z8">
+                <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl">
+                    <ng-container matColumnDef="ActionStartDate">
+                        <th mat-header-cell *matHeaderCellDef> تاریخ </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ActionStartDate}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ContractOrderNumber">
+                        <th mat-header-cell *matHeaderCellDef> قرارداد- سفارش </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Contract_Order_Number}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="FullName">
+                        <th mat-header-cell *matHeaderCellDef> شخص </th>
+                        <td mat-cell *matCellDef="let element"> {{element.FullName}} </td>
+                    </ng-container>
 
-            <mat-form-field class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <input #auto_contract_Input type="text" aria-label="Contract" placeholder="پرسنل" matInput [formControl]="contract_control" [matAutocomplete]="auto_contracts">
-                <mat-autocomplete #auto_contracts="matAutocomplete" [displayWith]="display_selected_contract_item">
-                    <mat-option (onSelectionChange)="auto_contract_Input.value !=undefined && auto_contracts_select_change($event)" *ngFor="let item of filtered_contract| async" [value]="item">
-                        {{item.GenerateContractNumber}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field> -->
+                    <ng-container matColumnDef="ContractCount">
+                        <th mat-header-cell *matHeaderCellDef>تعداد سفارش </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ContractCount}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TaskTitle">
+                        <th mat-header-cell *matHeaderCellDef> وظیفه </th>
+                        <td mat-cell *matCellDef="let element"> {{element.TaskTitle}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="SalonLineTitle">
+                        <th mat-header-cell *matHeaderCellDef> سالن - خط </th>
+                        <td mat-cell *matCellDef="let element"> {{element.SalonLineTitle}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ActivityCoutn">
+                        <th mat-header-cell *matHeaderCellDef> تعداد انجام شده </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ActivityCoutn}} </td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="CalculateDoneWorkTime">
+                        <th mat-header-cell *matHeaderCellDef> زمان انجام </th>
+                        <td mat-cell *matCellDef="let element"> {{element.CalculateDoneWorkTime}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="CalculateExpectationSystemTime">
+                        <th mat-header-cell *matHeaderCellDef> انتظار سیستم </th>
+                        <td mat-cell *matCellDef="let element"> {{element.CalculateExpectationSystemTime}} </td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="Status">
+                        <th mat-header-cell *matHeaderCellDef> وضعیت </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-icon [ngClass]="{'WellStatus': element.ExpectationSystemTimePerSecond > element.TimeDiffPerSecond ,'NormalStatus': element.TimeDiffPerSecond === element.ExpectationSystemTimePerSecond,'BadStatus':  element.ExpectationSystemTimePerSecond < element.TimeDiffPerSecond}">
+                                fiber_manual_record</mat-icon>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayed_columns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayed_columns;"></tr>
+                </table>
             </div>
         </form>
     </mat-card-content>

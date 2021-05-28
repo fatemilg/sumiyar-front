@@ -9,7 +9,7 @@ export class Personel {
     Active: boolean;
 
     RepeatPassword: string;
-
+    FullNameByRole: string;
     Personel()
     {
       this.FName='';
