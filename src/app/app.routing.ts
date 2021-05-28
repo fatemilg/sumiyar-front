@@ -12,6 +12,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { RepActivityInContractByPersonelComponent } from './rep-activity-in-contract-by-personel/rep-activity-in-contract-by-personel.component';
 import { ManageActionsComponent } from './manage-actions/manage-actions.component';
 import { AddContractsComponent } from './add-contracts/add-contracts.component';
+import { RepGeneralActivityComponent } from './rep-general-activity/rep-general-activity.component';
 
 
 
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: 'contracts', component: ContractsComponent, canActivate: [AuthGuard] },
   { path: 'supervisor-contract', component: SupervisorContractsComponent, canActivate: [AuthGuard] },
   { path: 'rep-activity-in-contract-by-personel', component: RepActivityInContractByPersonelComponent, canActivate: [AuthGuard] },
+  { path: 'rep-general-activity', component: RepGeneralActivityComponent, canActivate: [AuthGuard] },
+ 
   { path: 'manage-action', component: ManageActionsComponent, canActivate: [AuthGuard] },
   { path: 'add-contracts', component: AddContractsComponent, canActivate: [AuthGuard] },
 

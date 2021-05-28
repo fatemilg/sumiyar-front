@@ -29,6 +29,7 @@ import { DetailActionComponent } from './detail-action/detail-action.component';
 import { RepActivityInContractByPersonelComponent } from './rep-activity-in-contract-by-personel/rep-activity-in-contract-by-personel.component';
 import { ManageActionsComponent } from './manage-actions/manage-actions.component';
 import { AddContractsComponent } from './add-contracts/add-contracts.component';
+import { RepGeneralActivityComponent } from './rep-general-activity/rep-general-activity.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddContractsComponent } from './add-contracts/add-contracts.component';
     DigitalClockComponent,
     DetailActionComponent,
     ManageActionsComponent,
-    AddContractsComponent
+    AddContractsComponent,
+    RepGeneralActivityComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

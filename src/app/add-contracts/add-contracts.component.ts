@@ -104,7 +104,6 @@ export class AddContractsComponent implements OnInit {
   }
 
   get_industry_all() {
-    this.visible_progress = true;
     return this.industry_service
       .get_industry_all()
       .subscribe(
@@ -116,7 +115,6 @@ export class AddContractsComponent implements OnInit {
           else {
             this.general_func.ShowMessage(data.Message, data.IsOK);
           }
-          this.visible_progress = false;
 
         })
 

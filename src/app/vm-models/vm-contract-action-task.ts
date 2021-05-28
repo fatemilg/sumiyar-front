@@ -16,5 +16,8 @@ export class VM_Contract_Action_Task {
     IDContract :number;
     IDPersonel: number;
     IDLine: number;
-    ActionStartDate:string
+    IDIndustry: number;
+    IDTask: number;
+    FromActionStartDate:string
+    ToActionStartDate:string
 }

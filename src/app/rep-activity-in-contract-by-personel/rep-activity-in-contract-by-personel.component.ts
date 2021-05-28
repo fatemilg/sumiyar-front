@@ -13,8 +13,6 @@ import { ActionService } from 'src/app/services/action_service';
 import { Action } from 'src/app/models/Action';
 import { VM_Contract_Action_Task } from 'src/app/vm-models/vm-contract-action-task';
 import { ReportService } from 'src/app/services/report_service';
-import { SupervisorContractService } from 'src/app/services/supervisor_contract_service';
-import { SupervisorContract } from 'src/app/models/SupervisorContract';
 import { MatDatepickerInputEvent, MatTableDataSource } from '@angular/material';
 import * as jalaliMoment from 'jalali-moment';
 import { VM_Salon_Line } from '../vm-models/vm-salon-line';
@@ -43,8 +41,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   constructor(private contract_service: ContractService,
     private report_service: ReportService,
     private general_func: GeneralFunc,
-    private action_service: ActionService,
-    private supervisor_contract_service: SupervisorContractService) { }
+    private action_service: ActionService) { }
 
 
   contract_control = new FormControl();
@@ -71,7 +68,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
     this.visible_progress = true;
     this.vm_action_line_contract.IDContract=id_contract;
     this.vm_action_line_contract.IDLine=id_line;
-    this.vm_action_line_contract.ActionStartDateString=action_start_date;
+    this.vm_action_line_contract.FromActionStartDateString=action_start_date;
 
     return this.action_service
       .get_personel_worked_by_contract_and_line_and_action_strat_date(this.vm_action_line_contract)
@@ -91,7 +88,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
   get_contracts_used_in_action_by_start_date_and_line(action_start_date: string, id_line: number) {
     this.visible_progress = true;
     this.vm_action_line.IDLine=id_line;
-    this.vm_action_line.ActionStartDateString=action_start_date;
+    this.vm_action_line.FromActionStartDateString=action_start_date;
 
     return this.action_service
       .get_contracts_used_in_action_by_start_date_and_line(this.vm_action_line)
@@ -169,7 +166,7 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
     model.IDContract = this.contract_control.value.IDContract;
     model.IDPersonel = this.personels_selected;
     model.IDLine = this.line_selected;
-    model.ActionStartDate = this.action_start_date_selected;
+    model.FromActionStartDate = this.action_start_date_selected;
 
     return this.report_service
       .get_activity_in_contract_by_personel(model)

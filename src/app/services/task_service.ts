@@ -16,5 +16,8 @@ export class TaskService {
     get_task_by_task_category(id_task_category:number) {
         return this.http.get<XResult>(this.base_url + 'get_task_by_task_category/' + id_task_category)
     }
+    get_task_by_id_industry(id_industry:number) {
+        return this.http.get<XResult>(this.base_url + 'get_task_by_id_industry/' + id_industry)
+    }
 }
 

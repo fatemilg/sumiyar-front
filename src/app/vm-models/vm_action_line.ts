@@ -1,6 +1,6 @@
 export class VM_Action_Line {
 
-    ActionStartDateString: string;
+    FromActionStartDateString: string;
     IDLine:number;
 
 }
