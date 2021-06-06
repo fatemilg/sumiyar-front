@@ -5,6 +5,7 @@ import { XResult } from '../models/Xresult';
 import { Action } from '../models/Action';
 import { Observable } from 'rxjs';
 import { VM_Action_Line } from '../vm-models/vm_action_line';
+import { VM_Action_Line_Contract } from '../vm-models/vm_action_line_contract';
 
 
 
@@ -57,7 +58,7 @@ export class ActionService {
   get_contracts_used_in_action_by_start_date_and_line(action_line: VM_Action_Line): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'get_contracts_used_in_action_by_start_date_and_line', action_line)
   }
-  get_personel_worked_by_contract_and_line_and_action_strat_date(action_line: VM_Action_Line): Observable<XResult> {
+  get_personel_worked_by_contract_and_line_and_action_strat_date(action_line: VM_Action_Line_Contract): Observable<XResult> {
     return this.http.post<XResult>(this.base_url + 'get_personel_worked_by_contract_and_line_and_action_strat_date', action_line)
   }
 

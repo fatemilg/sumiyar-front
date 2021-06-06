@@ -57,18 +57,20 @@ export class RepGeneralActivityComponent implements OnInit {
   filtered_person: Observable<Personel[]>;
   res_personels: Personel[];
 
-  to_action_start_date_selected: string;
-  from_action_start_date_selected: string;
 
-
+  //salon_line
+  salon_line_control = new FormControl();
+  filtered_salon_line: Observable<VM_Salon_Line[]>;
   res_salon_line: VM_Salon_Line[];
 
+  to_action_start_date_selected: string;
+  from_action_start_date_selected: string;
   model_action = new Action();
   options: any
 
   vm_action_line = new VM_Action_Line();
   vm_action_line_contract = new VM_Action_Line_Contract();
-  line_selected: number;
+
   res_industries: Industry[];
   industry_selected: number;
   
@@ -93,6 +95,38 @@ export class RepGeneralActivityComponent implements OnInit {
         })
 
   }
+
+
+  //salon-line-auto complete
+  get_salon_lines() {
+    this.visible_progress = true;
+    return this.salon_service
+      .get_salon_line_all()
+      .subscribe(
+        (data: XResult) => {
+          if (data.IsOK) {
+            this.res_salon_line = data.Value;
+            this.filtered_salon_line = this.salon_line_control.valueChanges
+              .pipe(
+                startWith(''),
+                map(x => x ? this.filter_salon_line(x) : this.res_salon_line.slice())
+              );
+          }
+          else {
+            this.general_func.ShowMessage(data.Message, data.IsOK);
+          }
+          this.visible_progress = false;
+
+        })
+  }
+  display_selected_salon_line_item(vm_salon_line: VM_Salon_Line): string {
+    return vm_salon_line && vm_salon_line.Title ? vm_salon_line.Title : '';
+  }
+  private filter_salon_line(value: string): VM_Salon_Line[] {
+    return this.res_salon_line.filter(x => x.Title.toLowerCase().includes(value));
+  }
+
+
 
   //Task-auto complete
   get_tasks_by_id_industry(id_industry) {
@@ -154,28 +188,6 @@ export class RepGeneralActivityComponent implements OnInit {
   }
 
 
-
-  //salon
-  get_salon_line_all() {
-    this.visible_progress = true;
-    return this.salon_service
-      .get_salon_line_all()
-      .subscribe((data: XResult) => {
-        if (data.IsOK) {
-          this.res_salon_line = data.Value;
-        }
-        else {
-          this.general_func.ShowMessage(data.Message, data.IsOK);
-        }
-        this.visible_progress = false;
-
-      })
-  }
-  select_line(id_line: number) {
-    this.line_selected=id_line;
-  }
-
-
   change_from_action_start_date(event: MatDatepickerInputEvent<jalaliMoment.Moment>) {
 
     const from_action_start_date = jalaliMoment.from(event.value.toString(), "en").utc(true).toJSON();
@@ -198,7 +210,7 @@ export class RepGeneralActivityComponent implements OnInit {
     let model = new VM_Contract_Action_Task()
     model.IDPersonel = this.person_control.value != null ?this.person_control.value.IDPersonel :0;
     model.IDTask = this.task_control.value!= null ?this.task_control.value.IDTask :0;
-    model.IDLine = this.line_selected;
+    model.IDLine = this.salon_line_control.value!= null ?this.salon_line_control.value.IDLine :0;
     model.IDIndustry = this.industry_selected;
     model.FromActionStartDate = this.from_action_start_date_selected;
     model.ToActionStartDate = this.to_action_start_date_selected;
@@ -217,7 +229,7 @@ export class RepGeneralActivityComponent implements OnInit {
 
   ngOnInit() {
     this.get_industry_all();
-    this.get_salon_line_all();
+    this.get_salon_lines();
     this.get_personel_role_all();
   }
 
