@@ -32,17 +32,15 @@
                             {{item.Title}}
                         </mat-option>
                     </mat-autocomplete>
-
                 </mat-form-field>
 
-
-                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12" dir="rtl">
-                    <mat-label>سالن - خط</mat-label>
-                    <mat-select [(value)]="line_selected">
-                        <mat-option *ngFor="let item of res_salon_line" [value]="item.IDLine" (click)="select_line(item.IDLine)">
-                            <span>{{item.Title}}</span>
+                <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <input #auto_salon_line_Input type="text" aria-label="salon_line" placeholder="سالن-خط " matInput [formControl]="salon_line_control" [matAutocomplete]="auto_salon_line">
+                    <mat-autocomplete #auto_salon_line="matAutocomplete" [displayWith]="display_selected_salon_line_item">
+                        <mat-option *ngFor="let item of filtered_salon_line| async" [value]="item">
+                            {{item.Title}}
                         </mat-option>
-                    </mat-select>
+                    </mat-autocomplete>
                 </mat-form-field>
 
                 <mat-form-field class="col-lg-4 col-md-4 col-sm-12 col-xs-12">

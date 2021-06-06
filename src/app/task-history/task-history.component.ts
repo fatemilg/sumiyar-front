@@ -4,6 +4,7 @@ import { TaskHistory } from '../models/TaskHistory';
 import { TaskHistoryService } from '../services/task_history_service';
 import { XResult } from '../models/Xresult';
 import { GeneralFunc } from '../scripts/general_func';
+import { TokenService } from '../services/token_service';
 
 @Component({
   selector: 'app-task-history',
@@ -15,9 +16,10 @@ export class TaskHistoryComponent implements OnInit {
   constructor(
     private task_history_service: TaskHistoryService,
     private general_func: GeneralFunc,
+    private token_service: TokenService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public pass_data: any
   ) { }
-
+  id_personel: number = this.token_service.getUserPayload().IDPersonel;
   id_task = this.pass_data.IDTask;
   task_title = this.pass_data.TaskTitle;
   model_task_history = new TaskHistory()
@@ -52,6 +54,7 @@ export class TaskHistoryComponent implements OnInit {
 
   add_task_history(item) {
     this.visible_progress = true;
+    item.IDPersonel =this.id_personel;
     item.IDTask = this.id_task;
     return this.task_history_service
       .add_task_history(item)
