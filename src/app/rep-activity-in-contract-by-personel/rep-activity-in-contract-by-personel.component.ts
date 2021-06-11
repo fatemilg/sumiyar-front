@@ -26,6 +26,9 @@ declare var require: any;
 let Boost = require('node_modules/highcharts/modules/boost');
 let noData = require('node_modules/highcharts/modules/no-data-to-display');
 let More = require('node_modules/highcharts/highcharts-more');
+require('highcharts/modules/exporting')(Highcharts);
+require('highcharts/modules/export-data')(Highcharts);
+
 
 Boost(Highcharts);
 noData(Highcharts);
@@ -285,7 +288,10 @@ export class RepActivityInContractByPersonelComponent implements OnInit {
       }, {
         name: 'سیستم',
         data: this.create_json_for_chart(json).SystemEstimateTime
-      }]
+      }],
+      exporting: {
+        enabled: false
+      }
     }
 
     Highcharts.chart('container', this.options);
