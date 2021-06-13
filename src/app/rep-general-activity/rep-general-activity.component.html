@@ -70,6 +70,39 @@
                 </div>
             </div>
 
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom_table">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">قرارداد های استفاده شده در این بازه:</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" *ngFor="let item of distinct_contract_list" dir="rtl">
+                        <span>{{item}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom_table">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">افرادی که در این بازه مشغول کار بودند:</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" *ngFor="let item of distinct_person_list" dir="rtl">
+                        <span>{{item}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom_table">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">وظایف انجام شده در این بازه:</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" *ngFor="let item of distinct_task_list" dir="rtl">
+                        <span>{{item}}</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="table-container mat-elevation-z8">
                 <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl">
                     <ng-container matColumnDef="ActionStartDate">

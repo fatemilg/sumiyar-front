@@ -73,10 +73,16 @@ export class RepGeneralActivityComponent implements OnInit {
 
   res_industries: Industry[];
   industry_selected: number;
-  
+
+  distinct_person_list:any
+  distinct_contract_list:any;
+  distinct_task_list:any;
+  visible_distinct:boolean =false;
   //table-config
   displayed_columns: string[] = ['ActionStartDate','ContractOrderNumber','FullName','ContractCount','TaskTitle', 'SalonLineTitle','ActivityCoutn', 'CalculateDoneWorkTime', 'CalculateExpectationSystemTime', 'Status'];
   data_source: MatTableDataSource<VM_Action_Detail>;
+
+
 
   get_industry_all() {
     this.visible_progress = true;
@@ -219,9 +225,15 @@ export class RepGeneralActivityComponent implements OnInit {
       .subscribe((data: XResult) => {
         if (data.IsOK) {
           this.data_source = new MatTableDataSource(data.Value);
+         this.distinct_person_list = Array.from(new Set(data.Value.map(x => x.FullName)));
+         this.distinct_contract_list = Array.from(new Set(data.Value.map(x => x.ContractNumber)));
+         this.distinct_task_list = Array.from(new Set(data.Value.map(x => x.TaskTitle)));
+
+         this.visible_distinct=true;
         }
         else {
           this.general_func.ShowMessage(data.Message, data.IsOK);
+          this.visible_distinct=false;
         }
         this.visible_progress = false;
       });
