@@ -77,9 +77,13 @@ export class RepGeneralActivityComponent implements OnInit {
   distinct_person_list:any
   distinct_contract_list:any;
   distinct_task_list:any;
+  sum_count:any;
+  sum_time_diff_per_second:any;
+  sum_expectation_system_time_per_second:any;
+
   visible_distinct:boolean =false;
   //table-config
-  displayed_columns: string[] = ['ActionStartDate','ContractOrderNumber','FullName','ContractCount','TaskTitle', 'SalonLineTitle','ActivityCoutn', 'CalculateDoneWorkTime', 'CalculateExpectationSystemTime', 'Status'];
+  displayed_columns: string[] = ['ActionStartDate','ContractOrderNumber','FullName','ContractCount','TaskTitle', 'SalonLineTitle','ActivityCoutn', 'CalculateDoneWorkTime', 'CalculateExpectationSystemTime', 'EstimateOneUniTask','Status'];
   data_source: MatTableDataSource<VM_Action_Detail>;
 
 
@@ -228,7 +232,9 @@ export class RepGeneralActivityComponent implements OnInit {
          this.distinct_person_list = Array.from(new Set(data.Value.map(x => x.FullName)));
          this.distinct_contract_list = Array.from(new Set(data.Value.map(x => x.ContractNumber)));
          this.distinct_task_list = Array.from(new Set(data.Value.map(x => x.TaskTitle)));
-
+         this.sum_count = data.Value.reduce((sum, current) => sum + current.ActivityCoutn, 0);
+         this.sum_time_diff_per_second= this.general_func.ConvertSecondsToRealTime(data.Value.reduce((sum, current) => sum + current.TimeDiffPerSecond, 0));
+         this.sum_expectation_system_time_per_second=this.general_func.ConvertSecondsToRealTime(data.Value.reduce((sum, current) => sum + current.ExpectationSystemTimePerSecond, 0));
          this.visible_distinct=true;
         }
         else {
@@ -238,6 +244,8 @@ export class RepGeneralActivityComponent implements OnInit {
         this.visible_progress = false;
       });
   }
+
+
 
   ngOnInit() {
     this.get_industry_all();

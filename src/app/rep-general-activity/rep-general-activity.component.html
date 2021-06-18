@@ -70,8 +70,8 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
-                <div class="row set-border distinct_items custom_table">
+            <div class="col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom-table">
                     <div class="col-xs-12" dir="rtl">
                         <span style="color:red;direction: rtl;">قرارداد های استفاده شده در این بازه:</span>
                     </div>
@@ -81,8 +81,8 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
-                <div class="row set-border distinct_items custom_table">
+            <div class="col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom-table">
                     <div class="col-xs-12" dir="rtl">
                         <span style="color:red;direction: rtl;">افرادی که در این بازه مشغول کار بودند:</span>
                     </div>
@@ -92,8 +92,8 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="visible_distinct">
-                <div class="row set-border distinct_items custom_table">
+            <div class="col-xs-12" *ngIf="visible_distinct">
+                <div class="row set-border distinct_items custom-table">
                     <div class="col-xs-12" dir="rtl">
                         <span style="color:red;direction: rtl;">وظایف انجام شده در این بازه:</span>
                     </div>
@@ -103,8 +103,36 @@
                 </div>
             </div>
 
+            <div class="col-xs-12">
+                <div class="col-xs-12 set-border  custom-table" *ngIf="visible_distinct">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">مجموع زمان کار انجام شده:</span>
+                    </div>
+                    <div class="col-xs-12" dir="rtl">
+                        <span>{{sum_time_diff_per_second}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 set-border  custom-table" *ngIf="visible_distinct">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">مجموع زمان انتظار سیستم:</span>
+                    </div>
+                    <div class="col-xs-12" dir="rtl">
+                        <span>{{sum_expectation_system_time_per_second}}</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 set-border  custom-table" *ngIf="visible_distinct">
+                    <div class="col-xs-12" dir="rtl">
+                        <span style="color:red;direction: rtl;">مجموع تعداد انجام شده:</span>
+                    </div>
+                    <div class="col-xs-12" dir="rtl">
+                        <span>{{sum_count}}</span>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="table-container mat-elevation-z8">
-                <table mat-table [dataSource]="data_source" class="custom_table" dir="rtl">
+                <table mat-table [dataSource]="data_source" class="custom-table" dir="rtl">
                     <ng-container matColumnDef="ActionStartDate">
                         <th mat-header-cell *matHeaderCellDef> تاریخ </th>
                         <td mat-cell *matCellDef="let element"> {{element.ActionStartDate}} </td>
@@ -142,6 +170,10 @@
                     <ng-container matColumnDef="CalculateExpectationSystemTime">
                         <th mat-header-cell *matHeaderCellDef> انتظار سیستم </th>
                         <td mat-cell *matCellDef="let element"> {{element.CalculateExpectationSystemTime}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="EstimateOneUniTask">
+                        <th mat-header-cell *matHeaderCellDef> زمان یک واحد </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ExpectationSystemTimePerSecond / element.ActivityCoutn}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="Status">
