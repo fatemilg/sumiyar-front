@@ -230,7 +230,7 @@ export class RepGeneralActivityComponent implements OnInit {
         if (data.IsOK) {
           this.data_source = new MatTableDataSource(data.Value);
          this.distinct_person_list = Array.from(new Set(data.Value.map(x => x.FullName)));
-         this.distinct_contract_list = Array.from(new Set(data.Value.map(x => x.ContractNumber)));
+         this.distinct_contract_list = Array.from(new Set(data.Value.map(x => x.Contract_Order_Number)));
          this.distinct_task_list = Array.from(new Set(data.Value.map(x => x.TaskTitle)));
          this.sum_count = data.Value.reduce((sum, current) => sum + current.ActivityCoutn, 0);
          this.sum_time_diff_per_second= this.general_func.ConvertSecondsToRealTime(data.Value.reduce((sum, current) => sum + current.TimeDiffPerSecond, 0));
